@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>傳說對決｜限時活動</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background:
+        radial-gradient(circle at top, #27395b 0%, #101522 45%, #070b12 100%);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+
+    .game-card {
+      background: linear-gradient(145deg, #18263e, #0d1524);
+      border: 1px solid rgba(224, 185, 92, .45);
+      box-shadow:
+        0 0 20px rgba(0,0,0,.45),
+        inset 0 0 25px rgba(218,174,73,.06);
+    }
+
+    .gold-text {
+      color: #f3d477;
+    }
+
+    .gold-btn {
+      background: linear-gradient(90deg, #b88932, #f1d477, #b88932);
+      color: #17120a;
+      box-shadow: 0 5px 18px rgba(227,185,75,.25);
+    }
+
+    .gold-btn:active {
+      transform: scale(.98);
+    }
+
+    .shine {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shine::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.18),
+        transparent
+      );
+      transform: skewX(-20deg);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { left: -120%; }
+      45%,100% { left: 140%; }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen text-white px-4 py-6">
+
+  <main class="w-full max-w-[400px] mx-auto">
+
+    <!-- 標題 -->
+    <section class="text-center mb-5">
+      <p class="text-[11px] tracking-[4px] text-[#b9c4d8]">
+        ARENA OF VALOR STYLE EVENT
+      </p>
+
+      <h1 class="gold-text text-[28px] font-black mt-2">
+        限時活動
+      </h1>
+
+      <div class="mt-2 h-[1px] bg-gradient-to-r from-transparent via-[#d7b85d] to-transparent"></div>
+
+      <p class="text-[#d8dce5] text-[13px] mt-3">
+        活動期間完成選擇，即可查看活動獎勵
+      </p>
+    </section>
+
+
+    <!-- 活動資訊 -->
+    <section class="game-card rounded-2xl p-4 mb-4">
+
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-[#9ba8bd] text-[11px]">LIMITED EVENT</p>
+          <h2 class="gold-text font-black text-[21px] mt-1">
+            精選造型活動
+          </h2>
+        </div>
+
+        <div class="border border-[#caa950] rounded-lg px-3 py-2 text-center">
+          <p class="text-[10px] text-[#aeb8c9]">活動期間</p>
+          <p class="gold-text font-bold text-[13px]">
+            09/20 - 09/30
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-4 bg-black/25 rounded-xl p-3">
+        <p class="text-[12px] text-[#d1d7e2] leading-6">
+          活動期間內可從下方獎勵中選擇，
+          點擊「立即查看」後進入活動領取流程。
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- 獎勵 1 -->
+    <section class="game-card rounded-2xl p-4 mb-4">
+
+      <div class="flex justify-between items-start">
+
+        <div>
+          <span class="inline-block text-[10px] bg-[#75602a] text-[#ffe9a2] px-2 py-1 rounded">
+            精選獎勵
+          </span>
+
+          <h3 class="font-black text-[19px] mt-2">
+            限定造型獎勵
+          </h3>
+
+          <p class="text-[11px] text-[#9ba8bd] mt-1">
+            活動限定精選內容
+          </p>
+        </div>
+
+        <div class="text-right">
+          <p class="text-[#9ba8bd] text-[10px]">選擇</p>
+          <p class="gold-text text-[20px] font-black">①</p>
+        </div>
+
+      </div>
+
+      <button
+        class="openModal shine gold-btn w-full mt-4 py-3 rounded-xl font-black text-[15px]"
+        data-name="限定造型獎勵">
+        立即查看
+      </button>
+
+    </section>
+
+
+    <!-- 獎勵 2 -->
+    <section class="game-card rounded-2xl p-4 mb-4">
+
+      <div class="flex justify-between items-start">
+
+        <div>
+          <span class="inline-block text-[10px] bg-[#75602a] text-[#ffe9a2] px-2 py-1 rounded">
+            活動獎勵
+          </span>
+
+          <h3 class="font-black text-[19px] mt-2">
+            精選活動禮包
+          </h3>
+
+          <p class="text-[11px] text-[#9ba8bd] mt-1">
+            限時活動專屬內容
+          </p>
+        </div>
+
+        <div class="text-right">
+          <p class="text-[#9ba8bd] text-[10px]">選擇</p>
+          <p class="gold-text text-[20px] font-black">②</p>
+        </div>
+
+      </div>
+
+      <button
+        class="openModal shine gold-btn w-full mt-4 py-3 rounded-xl font-black text-[15px]"
+        data-name="精選活動禮包">
+        立即查看
+      </button>
+
+    </section>
+
+
+    <!-- 提示 -->
+    <section class="text-center mt-5">
+      <p class="text-[10px] text-[#758196] leading-5">
+        本頁為活動風格展示頁面，並非遊戲官方網站。<br>
+        實際活動內容請以遊戲內公告為準。
+      </p>
+    </section>
+
+  </main>
+
+
+  <!-- 彈窗 -->
+  <div
+    id="modal"
+    class="hidden fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4">
+
+    <div
+      class="game-card w-full max-w-[350px] rounded-2xl p-6 text-center">
+
+      <p class="text-[10px] tracking-[3px] text-[#9ba8bd]">
+        EVENT REWARD
+      </p>
+
+      <h3 class="gold-text font-black text-[21px] mt-2">
+        活動獎勵
+      </h3>
+
+      <div class="mt-5 bg-black/30 border border-[#765f2c] rounded-xl p-4">
+        <p
+          id="modalCouponName"
+          class="text-white font-bold text-[16px]">
+          限定造型獎勵
+        </p>
+
+        <p class="text-[#929caf] text-[11px] mt-2">
+          點擊下方按鈕進入活動領取流程
+        </p>
+      </div>
+
+      <button
+        id="goClaim"
+        class="gold-btn w-full mt-5 py-3.5 rounded-xl font-black">
+        前往活動頁
+      </button>
+
+      <button
+        id="closeModal"
+        class="w-full mt-3 py-3.5 rounded-xl bg-[#252d3a] text-[#aeb7c6] font-bold">
+        返回
+      </button>
+
+    </div>
+  </div>
+
+
+  <script>
+
+    const modal = document.getElementById("modal");
+    const modalName = document.getElementById("modalCouponName");
+
+    document.querySelectorAll(".openModal").forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        modalName.textContent =
+          button.dataset.name;
+
+        modal.classList.remove("hidden");
+
+      });
+
+    });
+
+
+    document.getElementById("closeModal")
+      .addEventListener("click", () => {
+
+        modal.classList.add("hidden");
+
+      });
+
+
+    modal.addEventListener("click", (event) => {
+
+      if (event.target === modal) {
+        modal.classList.add("hidden");
+      }
+
+    });
+
+
+    document.getElementById("goClaim")
+      .addEventListener("click", () => {
+
+        window.location.href =
+          "https://lin.ee/YXQuB75";
+
+      });
+
+  </script>
+
+</body>
+</html>
