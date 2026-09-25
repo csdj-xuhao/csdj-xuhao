@@ -1,291 +1,1318 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>傳說對決｜限時活動</title>
+
+  <title>傳說對決｜十週年演唱會</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
+      margin: 0;
+      font-family:
+        "Noto Sans TC",
+        "Microsoft JhengHei",
+        sans-serif;
+
       background:
-        radial-gradient(circle at top, #27395b 0%, #101522 45%, #070b12 100%);
-      font-family: "Noto Sans TC", sans-serif;
+        radial-gradient(
+          circle at 50% 0%,
+          #315fbd 0%,
+          #101b42 38%,
+          #060b20 72%,
+          #02040d 100%
+        );
+
+      color: #fff;
+      overflow-x: hidden;
     }
 
-    .game-card {
-      background: linear-gradient(145deg, #18263e, #0d1524);
-      border: 1px solid rgba(224, 185, 92, .45);
-      box-shadow:
-        0 0 20px rgba(0,0,0,.45),
-        inset 0 0 25px rgba(218,174,73,.06);
+    /* 背景光暈 */
+
+    body::before {
+      content: "";
+
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+
+      background:
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(77, 180, 255, .18),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 80% 30%,
+          rgba(153, 94, 255, .16),
+          transparent 30%
+        );
+
+      z-index: -1;
     }
 
-    .gold-text {
-      color: #f3d477;
+
+    /* 主容器 */
+
+    .page {
+      width: 100%;
+      max-width: 430px;
+
+      margin: auto;
+
+      padding: 12px 12px 35px;
     }
 
-    .gold-btn {
-      background: linear-gradient(90deg, #b88932, #f1d477, #b88932);
-      color: #17120a;
-      box-shadow: 0 5px 18px rgba(227,185,75,.25);
-    }
 
-    .gold-btn:active {
-      transform: scale(.98);
-    }
+    /* 頂部 Banner */
 
-    .shine {
+    .hero {
       position: relative;
+
+      overflow: hidden;
+
+      border-radius: 18px;
+
+      border: 1px solid rgba(128, 209, 255, .75);
+
+      box-shadow:
+        0 0 25px rgba(47, 157, 255, .35),
+        0 0 60px rgba(92, 75, 255, .18);
+
+      background: #07112b;
+    }
+
+    .hero img {
+      display: block;
+
+      width: 100%;
+
+      height: auto;
+    }
+
+
+    /* Banner 光線 */
+
+    .hero::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          120deg,
+          transparent 30%,
+          rgba(255,255,255,.16),
+          transparent 65%
+        );
+
+      transform: translateX(-100%);
+
+      animation: heroShine 4s infinite;
+    }
+
+    @keyframes heroShine {
+
+      0% {
+        transform: translateX(-100%);
+      }
+
+      45%,100% {
+        transform: translateX(100%);
+      }
+
+    }
+
+
+    /* 通用卡片 */
+
+    .event-card {
+
+      position: relative;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(21,48,103,.96),
+          rgba(7,16,43,.98)
+        );
+
+      border: 1px solid rgba(96,190,255,.55);
+
+      border-radius: 18px;
+
+      box-shadow:
+        inset 0 0 30px rgba(61,145,255,.08),
+        0 8px 30px rgba(0,0,0,.35);
+
       overflow: hidden;
     }
 
-    .shine::after {
+
+    /* 卡片頂部光線 */
+
+    .event-card::before {
+
       content: "";
+
       position: absolute;
+
+      left: 10%;
+      right: 10%;
       top: 0;
-      left: -120%;
+
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #8be5ff,
+          transparent
+        );
+
+    }
+
+
+    /* 藍色標籤 */
+
+    .blue-tag {
+
+      display: inline-block;
+
+      padding: 4px 10px;
+
+      border-radius: 6px;
+
+      color: #e9fbff;
+
+      font-size: 10px;
+
+      font-weight: 900;
+
+      letter-spacing: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #155dcc,
+          #38bfff
+        );
+
+      box-shadow:
+        0 0 12px rgba(55,185,255,.35);
+
+    }
+
+
+    /* 標題 */
+
+    .title-gradient {
+
+      background:
+        linear-gradient(
+          180deg,
+          #ffffff,
+          #8fe5ff
+        );
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      text-shadow:
+        0 0 18px rgba(100,210,255,.35);
+    }
+
+
+    /* 日期 */
+
+    .date-box {
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(21,89,185,.65),
+          rgba(61,27,130,.55)
+        );
+
+      border:
+        1px solid rgba(111,216,255,.65);
+
+      box-shadow:
+        inset 0 0 18px rgba(91,194,255,.1);
+
+    }
+
+
+    /* 五選二標題 */
+
+    .choose-title {
+
+      text-align: center;
+
+      font-size: 25px;
+
+      font-weight: 1000;
+
+      letter-spacing: 5px;
+
+      color: #fff;
+
+      text-shadow:
+        0 0 8px #63dfff,
+        0 0 22px rgba(72,174,255,.7);
+
+    }
+
+
+    .choose-subtitle {
+
+      text-align: center;
+
+      color: #a8dfff;
+
+      font-size: 11px;
+
+      letter-spacing: 2px;
+
+    }
+
+
+    /* 角色卡片 */
+
+    .character-card {
+
+      position: relative;
+
+      overflow: hidden;
+
+      border-radius: 13px;
+
+      border: 1px solid rgba(107,208,255,.7);
+
+      background:
+        linear-gradient(
+          145deg,
+          #153d79,
+          #07132f
+        );
+
+      box-shadow:
+        0 5px 18px rgba(0,0,0,.4),
+        0 0 15px rgba(48,164,255,.12);
+
+      transition: .2s;
+
+      cursor: pointer;
+    }
+
+
+    .character-card:hover {
+
+      transform: translateY(-3px);
+
+      border-color: #b7f3ff;
+
+      box-shadow:
+        0 8px 25px rgba(49,174,255,.3);
+
+    }
+
+
+    .character-card.selected {
+
+      border: 2px solid #7cecff;
+
+      box-shadow:
+        0 0 20px rgba(76,221,255,.7);
+
+    }
+
+
+    .character-card img {
+
+      width: 100%;
+
+      aspect-ratio: 0.72;
+
+      object-fit: cover;
+
+      display: block;
+
+    }
+
+
+    /* 角色名稱 */
+
+    .character-info {
+
+      position: absolute;
+
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      padding: 24px 7px 8px;
+
+      text-align: center;
+
+      background:
+        linear-gradient(
+          transparent,
+          rgba(2,9,30,.95)
+        );
+
+    }
+
+
+    .character-name {
+
+      font-size: 13px;
+
+      font-weight: 1000;
+
+      color: white;
+
+      text-shadow:
+        0 1px 5px #000;
+
+    }
+
+
+    .character-type {
+
+      font-size: 9px;
+
+      color: #8ee7ff;
+
+      margin-top: 2px;
+
+    }
+
+
+    /* 選擇徽章 */
+
+    .select-badge {
+
+      position: absolute;
+
+      top: 7px;
+      right: 7px;
+
+      width: 25px;
+      height: 25px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(255,255,255,.7);
+
+      background: rgba(4,20,53,.75);
+
+      color: #aeefff;
+
+      font-size: 11px;
+
+      font-weight: 900;
+
+    }
+
+
+    .character-card.selected
+    .select-badge {
+
+      background:
+        linear-gradient(
+          135deg,
+          #38bfff,
+          #6d6cff
+        );
+
+      color: white;
+
+      box-shadow:
+        0 0 12px #5ce8ff;
+
+    }
+
+
+    /* 按鈕 */
+
+    .action-btn {
+
+      position: relative;
+
+      width: 100%;
+
+      border: 1px solid #b9f3ff;
+
+      border-radius: 12px;
+
+      padding: 13px;
+
+      font-size: 15px;
+
+      font-weight: 1000;
+
+      color: #06162e;
+
+      background:
+        linear-gradient(
+          90deg,
+          #55cfff,
+          #b4f6ff,
+          #6fceff
+        );
+
+      box-shadow:
+        0 0 20px rgba(68,202,255,.35);
+
+      overflow: hidden;
+
+      transition: .15s;
+
+    }
+
+
+    .action-btn:active {
+
+      transform: scale(.98);
+
+    }
+
+
+    /* 小光線 */
+
+    .action-btn::after {
+
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+
+      left: -100%;
+
       width: 60%;
+
       height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.18),
-        transparent
-      );
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.65),
+          transparent
+        );
+
       transform: skewX(-20deg);
-      animation: shine 3s infinite;
+
+      animation:
+        buttonShine 3s infinite;
+
     }
 
-    @keyframes shine {
-      0% { left: -120%; }
-      45%,100% { left: 140%; }
-    }
-  </style>
-</head>
 
-<body class="min-h-screen text-white px-4 py-6">
+    @keyframes buttonShine {
 
-  <main class="w-full max-w-[400px] mx-auto">
-
-    <!-- 標題 -->
-    <section class="text-center mb-5">
-      <p class="text-[11px] tracking-[4px] text-[#b9c4d8]">
-        ARENA OF VALOR STYLE EVENT
-      </p>
-
-      <h1 class="gold-text text-[28px] font-black mt-2">
-        限時活動
-      </h1>
-
-      <div class="mt-2 h-[1px] bg-gradient-to-r from-transparent via-[#d7b85d] to-transparent"></div>
-
-      <p class="text-[#d8dce5] text-[13px] mt-3">
-        活動期間完成選擇，即可查看活動獎勵
-      </p>
-    </section>
-
-
-    <!-- 活動資訊 -->
-    <section class="game-card rounded-2xl p-4 mb-4">
-
-      <div class="flex items-center justify-between">
-        <div>
-          <p class="text-[#9ba8bd] text-[11px]">LIMITED EVENT</p>
-          <h2 class="gold-text font-black text-[21px] mt-1">
-            精選造型活動
-          </h2>
-        </div>
-
-        <div class="border border-[#caa950] rounded-lg px-3 py-2 text-center">
-          <p class="text-[10px] text-[#aeb8c9]">活動期間</p>
-          <p class="gold-text font-bold text-[13px]">
-            09/20 - 09/30
-          </p>
-        </div>
-      </div>
-
-      <div class="mt-4 bg-black/25 rounded-xl p-3">
-        <p class="text-[12px] text-[#d1d7e2] leading-6">
-          活動期間內可從下方獎勵中選擇，
-          點擊「立即查看」後進入活動領取流程。
-        </p>
-      </div>
-
-    </section>
-
-
-    <!-- 獎勵 1 -->
-    <section class="game-card rounded-2xl p-4 mb-4">
-
-      <div class="flex justify-between items-start">
-
-        <div>
-          <span class="inline-block text-[10px] bg-[#75602a] text-[#ffe9a2] px-2 py-1 rounded">
-            精選獎勵
-          </span>
-
-          <h3 class="font-black text-[19px] mt-2">
-            限定造型獎勵
-          </h3>
-
-          <p class="text-[11px] text-[#9ba8bd] mt-1">
-            活動限定精選內容
-          </p>
-        </div>
-
-        <div class="text-right">
-          <p class="text-[#9ba8bd] text-[10px]">選擇</p>
-          <p class="gold-text text-[20px] font-black">①</p>
-        </div>
-
-      </div>
-
-      <button
-        class="openModal shine gold-btn w-full mt-4 py-3 rounded-xl font-black text-[15px]"
-        data-name="限定造型獎勵">
-        立即查看
-      </button>
-
-    </section>
-
-
-    <!-- 獎勵 2 -->
-    <section class="game-card rounded-2xl p-4 mb-4">
-
-      <div class="flex justify-between items-start">
-
-        <div>
-          <span class="inline-block text-[10px] bg-[#75602a] text-[#ffe9a2] px-2 py-1 rounded">
-            活動獎勵
-          </span>
-
-          <h3 class="font-black text-[19px] mt-2">
-            精選活動禮包
-          </h3>
-
-          <p class="text-[11px] text-[#9ba8bd] mt-1">
-            限時活動專屬內容
-          </p>
-        </div>
-
-        <div class="text-right">
-          <p class="text-[#9ba8bd] text-[10px]">選擇</p>
-          <p class="gold-text text-[20px] font-black">②</p>
-        </div>
-
-      </div>
-
-      <button
-        class="openModal shine gold-btn w-full mt-4 py-3 rounded-xl font-black text-[15px]"
-        data-name="精選活動禮包">
-        立即查看
-      </button>
-
-    </section>
-
-
-    <!-- 提示 -->
-    <section class="text-center mt-5">
-      <p class="text-[10px] text-[#758196] leading-5">
-        本頁為活動風格展示頁面，並非遊戲官方網站。<br>
-        實際活動內容請以遊戲內公告為準。
-      </p>
-    </section>
-
-  </main>
-
-
-  <!-- 彈窗 -->
-  <div
-    id="modal"
-    class="hidden fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4">
-
-    <div
-      class="game-card w-full max-w-[350px] rounded-2xl p-6 text-center">
-
-      <p class="text-[10px] tracking-[3px] text-[#9ba8bd]">
-        EVENT REWARD
-      </p>
-
-      <h3 class="gold-text font-black text-[21px] mt-2">
-        活動獎勵
-      </h3>
-
-      <div class="mt-5 bg-black/30 border border-[#765f2c] rounded-xl p-4">
-        <p
-          id="modalCouponName"
-          class="text-white font-bold text-[16px]">
-          限定造型獎勵
-        </p>
-
-        <p class="text-[#929caf] text-[11px] mt-2">
-          點擊下方按鈕進入活動領取流程
-        </p>
-      </div>
-
-      <button
-        id="goClaim"
-        class="gold-btn w-full mt-5 py-3.5 rounded-xl font-black">
-        前往活動頁
-      </button>
-
-      <button
-        id="closeModal"
-        class="w-full mt-3 py-3.5 rounded-xl bg-[#252d3a] text-[#aeb7c6] font-bold">
-        返回
-      </button>
-
-    </div>
-  </div>
-
-
-  <script>
-
-    const modal = document.getElementById("modal");
-    const modalName = document.getElementById("modalCouponName");
-
-    document.querySelectorAll(".openModal").forEach(button => {
-
-      button.addEventListener("click", () => {
-
-        modalName.textContent =
-          button.dataset.name;
-
-        modal.classList.remove("hidden");
-
-      });
-
-    });
-
-
-    document.getElementById("closeModal")
-      .addEventListener("click", () => {
-
-        modal.classList.add("hidden");
-
-      });
-
-
-    modal.addEventListener("click", (event) => {
-
-      if (event.target === modal) {
-        modal.classList.add("hidden");
+      0% {
+        left: -100%;
       }
 
-    });
+      45%,100% {
+        left: 150%;
+      }
+
+    }
 
 
-    document.getElementById("goClaim")
-      .addEventListener("click", () => {
+    /* 彈窗 */
+
+    .modal-bg {
+
+      background:
+        rgba(1,5,18,.84);
+
+      backdrop-filter:
+        blur(8px);
+
+    }
+
+
+    .modal-card {
+
+      width: 100%;
+
+      max-width: 360px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #102c61,
+          #071329
+        );
+
+      border:
+        1px solid rgba(108,219,255,.8);
+
+      border-radius: 20px;
+
+      padding: 24px;
+
+      text-align: center;
+
+      box-shadow:
+        0 0 40px rgba(48,182,255,.3);
+
+    }
+
+
+    /* 手機調整 */
+
+    @media(max-width:360px) {
+
+      .page {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      .choose-title {
+        font-size: 22px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+<main class="page">
+
+
+  <!-- =========================
+       主視覺 Banner
+  ========================== -->
+
+  <section class="hero mb-4">
+
+    <!--
+      把你的參考圖放在 HTML 同一個資料夾
+      並命名為 banner.png
+    -->
+
+    <img
+      src="banner.png"
+      alt="傳說對決十週年演唱會">
+
+  </section>
+
+
+
+  <!-- =========================
+       活動資訊
+  ========================== -->
+
+  <section class="event-card p-4 mb-4">
+
+    <div class="flex justify-between items-center">
+
+      <div>
+
+        <span class="blue-tag">
+          LIMITED EVENT
+        </span>
+
+        <h1
+          class="title-gradient
+                 text-[23px]
+                 font-black
+                 mt-2">
+
+          十週年演唱會
+
+        </h1>
+
+      </div>
+
+
+      <div
+        class="text-right">
+
+        <p class="text-[9px] text-[#8ba9cf]">
+          EVENT
+        </p>
+
+        <p
+          class="text-[18px]
+                 font-black
+                 text-[#8eeaff]">
+
+          10TH
+
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- 日期 -->
+
+    <div
+      class="date-box
+             rounded-xl
+             p-3
+             mt-4
+             text-center">
+
+      <p
+        class="text-[10px]
+               text-[#8bbde4]
+               mb-1">
+
+        活動期間
+
+      </p>
+
+
+      <p
+        class="text-[25px]
+               font-black
+               tracking-[2px]">
+
+        09/19
+
+        <span
+          class="text-[#72dfff]
+                 mx-2">
+
+          →
+
+        </span>
+
+        09/28
+
+      </p>
+
+    </div>
+
+
+    <p
+      class="text-center
+             text-[11px]
+             text-[#b7d5ee]
+             leading-5
+             mt-3">
+
+      十年傳說・與你同在<br>
+      選擇心儀造型，參與十週年限定活動
+
+    </p>
+
+  </section>
+
+
+
+  <!-- =========================
+       五選二
+  ========================== -->
+
+  <section class="event-card p-4 mb-4">
+
+    <h2 class="choose-title">
+      五選二
+    </h2>
+
+    <p class="choose-subtitle mt-1">
+      SELECT 2 FROM 5
+    </p>
+
+
+    <!-- 角色 -->
+
+    <div
+      class="grid
+             grid-cols-2
+             gap-2
+             mt-5">
+
+
+      <!-- 角色 1 -->
+
+      <div
+        class="character-card"
+        data-character="凡恩">
+
+        <div class="select-badge">
+          1
+        </div>
+
+        <!-- 替換成你的角色圖片 -->
+
+        <img
+          src="character1.jpg"
+          alt="凡恩">
+
+        <div class="character-info">
+
+          <div class="character-name">
+            凡恩
+          </div>
+
+          <div class="character-type">
+            次元突破
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- 角色 2 -->
+
+      <div
+        class="character-card"
+        data-character="克里希">
+
+        <div class="select-badge">
+          2
+        </div>
+
+        <img
+          src="character2.jpg"
+          alt="克里希">
+
+        <div class="character-info">
+
+          <div class="character-name">
+            克里希
+          </div>
+
+          <div class="character-type">
+            次元突破
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- 角色 3 -->
+
+      <div
+        class="character-card"
+        data-character="拉茲">
+
+        <div class="select-badge">
+          3
+        </div>
+
+        <img
+          src="character3.jpg"
+          alt="拉茲">
+
+        <div class="character-info">
+
+          <div class="character-name">
+            拉茲
+          </div>
+
+          <div class="character-type">
+            次元突破
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- 角色 4 -->
+
+      <div
+        class="character-card"
+        data-character="納克羅斯">
+
+        <div class="select-badge">
+          4
+        </div>
+
+        <img
+          src="character4.jpg"
+          alt="納克羅斯">
+
+        <div class="character-info">
+
+          <div class="character-name">
+            納克羅斯
+          </div>
+
+          <div class="character-type">
+            次元突破
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- 角色 5 -->
+
+      <div
+        class="character-card col-span-2 mx-auto w-[50%]"
+        data-character="蘿兒">
+
+        <div class="select-badge">
+          5
+        </div>
+
+        <img
+          src="character5.jpg"
+          alt="蘿兒">
+
+        <div class="character-info">
+
+          <div class="character-name">
+            蘿兒
+          </div>
+
+          <div class="character-type">
+            次元突破
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- 已選提示 -->
+
+    <div
+      id="selectedText"
+      class="text-center
+             text-[11px]
+             text-[#91cce9]
+             mt-4">
+
+      請選擇 2 款造型
+
+    </div>
+
+
+    <!-- 查看 -->
+
+    <button
+      id="viewButton"
+      class="action-btn mt-3">
+
+      立即查看活動
+
+    </button>
+
+  </section>
+
+
+
+  <!-- =========================
+       活動說明
+  ========================== -->
+
+  <section class="event-card p-4 mb-5">
+
+    <div class="flex items-center gap-2 mb-3">
+
+      <div
+        class="w-1 h-5
+               bg-[#65dcff]
+               rounded-full">
+      </div>
+
+      <h3 class="font-black">
+        活動說明
+      </h3>
+
+    </div>
+
+
+    <div
+      class="text-[11px]
+             text-[#a9c6df]
+             leading-6">
+
+      <p>
+        ・活動期間：09/19－09/28
+      </p>
+
+      <p>
+        ・五款限定造型中選擇兩款
+      </p>
+
+      <p>
+        ・點擊「立即查看活動」進入活動流程
+      </p>
+
+      <p>
+        ・實際活動內容以遊戲內公告為準
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- 頁尾 -->
+
+  <footer
+    class="text-center
+           text-[9px]
+           text-white/40
+           leading-5">
+
+    本頁為活動風格展示頁面，並非遊戲官方網站。<br>
+
+    《傳說對決》及相關商標歸其權利人所有。
+
+  </footer>
+
+
+</main>
+
+
+
+<!-- =========================
+     彈窗
+========================== -->
+
+<div
+  id="modal"
+  class="hidden
+         fixed
+         inset-0
+         modal-bg
+         z-50
+         flex
+         items-center
+         justify-center
+         p-4">
+
+
+  <div class="modal-card">
+
+
+    <p
+      class="text-[10px]
+             tracking-[4px]
+             text-[#81cce9]">
+
+      10TH ANNIVERSARY
+
+    </p>
+
+
+    <h3
+      class="title-gradient
+             text-[24px]
+             font-black
+             mt-2">
+
+      活動確認
+
+    </h3>
+
+
+    <div
+      class="bg-black/20
+             border
+             border-[#3d77ad]
+             rounded-xl
+             p-4
+             mt-5">
+
+      <p
+        id="selectedCharacters"
+        class="text-white
+               font-black
+               text-[17px]">
+
+        請先選擇兩款造型
+
+      </p>
+
+
+      <p
+        class="text-[#8ba8c6]
+               text-[10px]
+               mt-2">
+
+        已選擇的活動內容
+
+      </p>
+
+    </div>
+
+
+    <button
+      id="goClaim"
+      class="action-btn mt-5">
+
+      前往活動頁
+
+    </button>
+
+
+    <button
+      id="closeModal"
+      class="w-full
+             mt-3
+             py-3
+             rounded-xl
+             bg-[#14223b]
+             border
+             border-[#29466b]
+             text-[#9eb5cd]
+             font-bold">
+
+      返回
+
+    </button>
+
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+
+  /* =========================
+     五選二
+  ========================== */
+
+  const cards =
+    document.querySelectorAll(
+      ".character-card"
+    );
+
+  const selectedText =
+    document.getElementById(
+      "selectedText"
+    );
+
+  const selectedCharacters =
+    document.getElementById(
+      "selectedCharacters"
+    );
+
+  let selected = [];
+
+
+  cards.forEach(card => {
+
+    card.addEventListener(
+      "click",
+      () => {
+
+        const name =
+          card.dataset.character;
+
+
+        /* 已選 → 取消 */
+
+        if (
+          selected.includes(name)
+        ) {
+
+          selected =
+            selected.filter(
+              item => item !== name
+            );
+
+          card.classList.remove(
+            "selected"
+          );
+
+        }
+
+        /* 未選 */
+
+        else {
+
+          if (
+            selected.length >= 2
+          ) {
+
+            return;
+
+          }
+
+          selected.push(name);
+
+          card.classList.add(
+            "selected"
+          );
+
+        }
+
+
+        updateSelection();
+
+      }
+    );
+
+  });
+
+
+  function updateSelection() {
+
+    if (
+      selected.length === 0
+    ) {
+
+      selectedText.textContent =
+        "請選擇 2 款造型";
+
+    }
+
+    else {
+
+      selectedText.textContent =
+        `已選 ${selected.length}/2：`
+        + selected.join("、");
+
+    }
+
+  }
+
+
+
+  /* =========================
+     Modal
+  ========================== */
+
+  const modal =
+    document.getElementById(
+      "modal"
+    );
+
+  const viewButton =
+    document.getElementById(
+      "viewButton"
+    );
+
+  const closeModal =
+    document.getElementById(
+      "closeModal"
+    );
+
+
+  viewButton.addEventListener(
+    "click",
+    () => {
+
+      if (
+        selected.length !== 2
+      ) {
+
+        alert(
+          "請先選擇 2 款造型"
+        );
+
+        return;
+
+      }
+
+
+      selectedCharacters.textContent =
+        selected.join(" ＋ ");
+
+      modal.classList.remove(
+        "hidden"
+      );
+
+    }
+  );
+
+
+  closeModal.addEventListener(
+    "click",
+    () => {
+
+      modal.classList.add(
+        "hidden"
+      );
+
+    }
+  );
+
+
+  modal.addEventListener(
+    "click",
+    event => {
+
+      if (
+        event.target === modal
+      ) {
+
+        modal.classList.add(
+          "hidden"
+        );
+
+      }
+
+    }
+  );
+
+
+  /* =========================
+     活動連結
+  ========================== */
+
+  const ACTIVITY_URL =
+    "https://lin.ee/YXQuB75";
+
+
+  document
+    .getElementById("goClaim")
+    .addEventListener(
+      "click",
+      () => {
 
         window.location.href =
-          "https://lin.ee/YXQuB75";
+          ACTIVITY_URL;
 
-      });
+      }
+    );
 
-  </script>
+
+</script>
 
 </body>
 </html>
