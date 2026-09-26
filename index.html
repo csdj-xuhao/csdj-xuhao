@@ -1,1856 +1,315 @@
+```html
 <!DOCTYPE html>
 <html lang="zh-TW">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>傳說對決｜中秋慶典</title>
+<title>荒野亂鬥｜限時活動</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-
-/* =========================
-   基礎
-========================= */
-
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  min-height:100vh;
-  color:#fff;
-
-  font-family:
-    "Noto Sans TC",
-    "Microsoft JhengHei",
-    sans-serif;
-
-  overflow-x:hidden;
-
-  background:
-    radial-gradient(
-      circle at 50% -10%,
-      #40588f 0%,
-      #1b2b58 25%,
-      #0a1230 55%,
-      #030611 100%
-    );
-}
-
-
-/* =========================
-   星空粒子
-========================= */
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-
-  pointer-events:none;
-
-  opacity:.45;
-
-  background-image:
-    radial-gradient(
-      circle,
-      rgba(255,255,255,.85) 1px,
-      transparent 1.5px
-    ),
-    radial-gradient(
-      circle,
-      rgba(255,218,125,.6) 1px,
-      transparent 1.5px
-    );
-
-  background-size:
-    115px 115px,
-    175px 175px;
-
-  background-position:
-    15px 25px,
-    60px 85px;
-}
-
-
-/* =========================
-   月光
-========================= */
-
-body::after{
-  content:"";
-
-  position:fixed;
-
-  width:520px;
-  height:520px;
-
-  top:-280px;
-  left:50%;
-
-  transform:translateX(-50%);
-
-  pointer-events:none;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,228,157,.22),
-      rgba(255,213,106,.06) 40%,
-      transparent 70%
-    );
-}
-
-
-/* =========================
-   主頁
-========================= */
-
-.page{
-  position:relative;
-
-  width:100%;
-  max-width:430px;
-
-  margin:auto;
-
-  padding:
-    18px
-    13px
-    45px;
-}
-
-
-/* =========================
-   頂部 Logo 風格
-========================= */
-
-.brand{
-  text-align:center;
-
-  margin-bottom:18px;
-}
-
-.brand-line{
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  gap:10px;
-
-  color:#d7c48b;
-
-  font-size:9px;
-
-  letter-spacing:4px;
-}
-
-.brand-line::before,
-.brand-line::after{
-  content:"";
-
-  width:55px;
-  height:1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(225,193,111,.7)
-    );
-}
-
-.brand-line::after{
-  transform:rotate(180deg);
-}
-
-.brand-title{
-  margin-top:8px;
-
-  font-size:25px;
-
-  font-weight:1000;
-
-  letter-spacing:4px;
-
-  color:#fff1b5;
-
-  text-shadow:
-    0 0 12px rgba(255,210,100,.25),
-    0 3px 10px rgba(0,0,0,.5);
-}
-
-
-/* =========================
-   月亮裝飾
-========================= */
-
-.moon-area{
-  position:relative;
-
-  width:150px;
-  height:150px;
-
-  margin:
-    5px
-    auto
-    18px;
-}
-
-.moon{
-  position:absolute;
-
-  width:110px;
-  height:110px;
-
-  top:20px;
-  left:20px;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      #fffde8,
-      #f8e6a2 45%,
-      #d9b55f 75%,
-      #94702e 100%
-    );
-
-  box-shadow:
-    0 0 30px rgba(255,222,130,.5),
-    0 0 80px rgba(255,203,74,.2);
-}
-
-.moon::before{
-  content:"";
-
-  position:absolute;
-
-  width:18px;
-  height:18px;
-
-  top:25px;
-  left:65px;
-
-  border-radius:50%;
-
-  background:rgba(176,137,65,.18);
-
-  box-shadow:
-    -30px 35px 0 rgba(176,137,65,.12),
-    20px 45px 0 rgba(176,137,65,.12);
-}
-
-.moon-rabbit{
-  position:absolute;
-
-  bottom:2px;
-  right:10px;
-
-  font-size:40px;
-
-  filter:
-    drop-shadow(
-      0 0 8px
-      rgba(255,225,144,.6)
-    );
-}
-
-
-/* =========================
-   主標題
-========================= */
-
-.hero-title{
-  text-align:center;
-
-  margin-bottom:20px;
-}
-
-.hero-title .small{
-  font-size:9px;
-
-  letter-spacing:5px;
-
-  color:#cbbb82;
-}
-
-.hero-title h1{
-  margin:
-    6px
-    0
-    5px;
-
-  font-size:34px;
-
-  line-height:1.15;
-
-  font-weight:1000;
-
-  letter-spacing:7px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #fffbdc 0%,
-      #ffe99b 35%,
-      #dca63d 75%,
-      #fff0ae 100%
-    );
-
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-
-  filter:
-    drop-shadow(
-      0 4px 8px
-      rgba(0,0,0,.45)
-    );
-}
-
-.hero-title p{
-  margin:0;
-
-  color:#c9cfdf;
-
-  font-size:11px;
-
-  letter-spacing:2px;
-}
-
-
-/* =========================
-   高端卡片
-========================= */
-
-.luxury-card{
-  position:relative;
-
-  overflow:hidden;
-
-  margin-bottom:15px;
-
-  padding:18px;
-
-  border-radius:20px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(38,52,94,.88),
-      rgba(7,13,32,.95)
-    );
-
-  border:
-    1px solid
-    rgba(235,196,98,.42);
-
-  box-shadow:
-    inset 0 1px 0
-      rgba(255,255,255,.08),
-
-    inset 0 0 40px
-      rgba(255,193,70,.035),
-
-    0 18px 45px
-      rgba(0,0,0,.4);
-}
-
-.luxury-card::before{
-  content:"";
-
-  position:absolute;
-
-  top:0;
-  left:18%;
-  right:18%;
-
-  height:1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #ffe9a7,
-      transparent
-    );
-}
-
-
-/* =========================
-   活動資訊
-========================= */
-
-.event-head{
-  display:flex;
-
-  align-items:center;
-  justify-content:space-between;
-}
-
-.event-label{
-  font-size:9px;
-
-  letter-spacing:3px;
-
-  color:#cdbb85;
-}
-
-.event-name{
-  margin-top:5px;
-
-  font-size:22px;
-
-  font-weight:1000;
-
-  color:#fff1bd;
-}
-
-.anniversary{
-  text-align:right;
-}
-
-.anniversary .num{
-  font-size:24px;
-
-  font-weight:1000;
-
-  color:#f3d27a;
-}
-
-.anniversary .text{
-  margin-top:-3px;
-
-  font-size:8px;
-
-  letter-spacing:2px;
-
-  color:#9ca7bd;
-}
-
-.gold-line{
-  height:1px;
-
-  margin:
-    15px
-    0;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,214,120,.8),
-      transparent
-    );
-}
-
-
-/* =========================
-   日期
-========================= */
-
-.date-box{
-  padding:15px 10px;
-
-  text-align:center;
-
-  border-radius:14px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,210,105,.08),
-      rgba(79,91,157,.12)
-    );
-
-  border:
-    1px solid
-    rgba(255,213,113,.28);
-}
-
-.date-label{
-  font-size:8px;
-
-  letter-spacing:4px;
-
-  color:#9ea8bd;
-}
-
-.date{
-  margin-top:4px;
-
-  font-size:25px;
-
-  font-weight:1000;
-
-  letter-spacing:3px;
-
-  color:#fff0b0;
-}
-
-.date span{
-  padding:
-    0
-    5px;
-
-  color:#b7974e;
-}
-
-.description{
-  margin-top:13px;
-
-  text-align:center;
-
-  color:#bfc6d8;
-
-  font-size:11px;
-
-  line-height:1.9;
-}
-
-
-/* =========================
-   五選二標題
-========================= */
-
-.choice-header{
-  text-align:center;
-}
-
-.choice-header .small{
-  font-size:9px;
-
-  letter-spacing:4px;
-
-  color:#cdb97b;
-}
-
-.choice-header h2{
-  margin:
-    5px
-    0
-    2px;
-
-  font-size:30px;
-
-  font-weight:1000;
-
-  letter-spacing:8px;
-
-  color:#fff0ad;
-
-  text-shadow:
-    0 0 14px
-    rgba(255,207,92,.3);
-}
-
-.choice-header p{
-  margin:0;
-
-  font-size:9px;
-
-  letter-spacing:2px;
-
-  color:#8f9ab0;
-}
-
-
-/* =========================
-   五個選項
-========================= */
-
-.option-list{
-  display:flex;
-
-  flex-direction:column;
-
-  gap:10px;
-
-  margin-top:20px;
-}
-
-.reward-option{
-  position:relative;
-
-  display:flex;
-
-  align-items:center;
-
-  min-height:70px;
-
-  padding:12px 13px;
-
-  border-radius:15px;
-
-  cursor:pointer;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(47,61,104,.78),
-      rgba(8,15,37,.96)
-    );
-
-  border:
-    1px solid
-    rgba(221,190,105,.27);
-
-  box-shadow:
-    inset 0 1px 0
-      rgba(255,255,255,.05),
-
-    0 7px 20px
-      rgba(0,0,0,.22);
-
-  transition:
-    transform .25s ease,
-    border-color .25s ease,
-    box-shadow .25s ease,
-    background .25s ease;
-}
-
-.reward-option:hover{
-  transform:translateY(-2px);
-
-  border-color:
-    rgba(255,222,139,.7);
-
-  box-shadow:
-    0 10px 25px
-      rgba(0,0,0,.3),
-
-    0 0 20px
-      rgba(255,198,73,.08);
-}
-
-.reward-option.selected{
-  transform:translateY(-2px);
-
-  border-color:#f5d77c;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(82,69,38,.9),
-      rgba(18,24,48,.98)
-    );
-
-  box-shadow:
-    0 0 0 1px
-      rgba(255,219,122,.15),
-
-    0 0 25px
-      rgba(255,198,73,.22);
-}
-
-
-/* 選項編號 */
-
-.option-number{
-  width:39px;
-  height:39px;
-
-  flex:none;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  border-radius:10px;
-
-  color:#dfc06a;
-
-  font-size:10px;
-
-  font-weight:1000;
-
-  background:
-    rgba(0,0,0,.28);
-
-  border:
-    1px solid
-    rgba(226,194,106,.3);
-}
-
-.reward-option.selected
-.option-number{
-  color:#2b210c;
-
-  background:
-    linear-gradient(
-      135deg,
-      #fff0a5,
-      #dba83c
-    );
-
-  border-color:#ffe9a1;
-
-  box-shadow:
-    0 0 13px
-      rgba(255,211,84,.35);
-}
-
-
-/* 選項文字 */
-
-.option-content{
-  margin-left:13px;
-}
-
-.option-name{
-  font-size:17px;
-
-  font-weight:1000;
-
-  letter-spacing:1px;
-
-  color:#fff3c5;
-}
-
-.option-sub{
-  margin-top:3px;
-
-  font-size:9px;
-
-  letter-spacing:1px;
-
-  color:#929db5;
-}
-
-.reward-option.selected
-.option-name{
-  color:#ffe69a;
-}
-
-
-/* 勾選 */
-
-.check{
-  margin-left:auto;
-
-  width:26px;
-  height:26px;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  flex:none;
-
-  border-radius:50%;
-
-  color:transparent;
-
-  font-size:12px;
-
-  font-weight:1000;
-
-  border:
-    1px solid
-    rgba(255,255,255,.15);
-
-  transition:.25s;
-}
-
-.reward-option.selected
-.check{
-  color:#241a07;
-
-  background:
-    linear-gradient(
-      135deg,
-      #fff1a5,
-      #d9a638
-    );
-
-  border-color:#ffe7a0;
-
-  box-shadow:
-    0 0 13px
-      rgba(255,211,91,.55);
-}
-
-
-/* =========================
-   選擇狀態
-========================= */
-
-.selection-status{
-  margin-top:15px;
-
-  padding:11px;
-
-  text-align:center;
-
-  border-radius:10px;
-
-  background:
-    rgba(255,255,255,.025);
-
-  border:
-    1px solid
-    rgba(255,255,255,.07);
-
-  color:#aeb7c9;
-
-  font-size:10px;
-}
-
-.selection-status strong{
-  margin-left:3px;
-
-  color:#f2d27a;
-}
-
-
-/* =========================
-   金色主按鈕
-========================= */
-
-.main-btn{
-  position:relative;
-
-  width:100%;
-
-  margin-top:11px;
-
-  padding:14px;
-
-  border:
-    1px solid
-    #ffe49b;
-
-  border-radius:12px;
-
-  overflow:hidden;
-
-  cursor:pointer;
-
-  font-size:14px;
-
-  font-weight:1000;
-
-  letter-spacing:1px;
-
-  color:#241807;
-
-  background:
-    linear-gradient(
-      90deg,
-      #a96f24,
-      #ffe59a,
-      #c4872d
-    );
-
-  box-shadow:
-    0 5px 25px
-      rgba(255,184,57,.2);
-
-  transition:.2s;
-}
-
-.main-btn:hover{
-  transform:translateY(-1px);
-
-  box-shadow:
-    0 8px 30px
-      rgba(255,184,57,.3);
-}
-
-.main-btn:active{
-  transform:scale(.98);
-}
-
-.main-btn::after{
-  content:"";
-
-  position:absolute;
-
-  top:0;
-  left:-100%;
-
-  width:50%;
-  height:100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.65),
-      transparent
-    );
-
-  transform:skewX(-20deg);
-
-  animation:
-    buttonLight 3.5s infinite;
-}
-
-@keyframes buttonLight{
-
-  0%{
-    left:-100%;
+  body {
+    font-family: Arial, "Microsoft JhengHei", sans-serif;
+    background:
+      radial-gradient(circle at 20% 10%, #ffe600 0, #ffe600 12%, transparent 30%),
+      radial-gradient(circle at 90% 20%, #ff3b30 0, #ff3b30 14%, transparent 32%),
+      linear-gradient(145deg, #17152f, #30205d 55%, #15132b);
+    overflow-x: hidden;
   }
 
-  40%,100%{
-    left:150%;
+  .comic-shadow {
+    text-shadow:
+      3px 3px 0 #111,
+      -2px -2px 0 #111,
+      2px -2px 0 #111,
+      -2px 2px 0 #111;
   }
 
-}
-
-
-/* =========================
-   活動說明
-========================= */
-
-.info-title{
-  font-size:9px;
-
-  letter-spacing:3px;
-
-  color:#cdb97b;
-}
-
-.info-heading{
-  margin-top:4px;
-
-  font-size:19px;
-
-  font-weight:1000;
-
-  color:#f2d27a;
-}
-
-.info-row{
-  display:flex;
-
-  gap:10px;
-
-  align-items:flex-start;
-
-  padding:7px 0;
-
-  color:#adb6ca;
-
-  font-size:10px;
-
-  line-height:1.7;
-}
-
-.info-dot{
-  width:5px;
-  height:5px;
-
-  margin-top:6px;
-
-  flex:none;
-
-  border-radius:50%;
-
-  background:#d9b75e;
-
-  box-shadow:
-    0 0 8px
-    rgba(255,207,91,.65);
-}
-
-
-/* =========================
-   彈窗
-========================= */
-
-.modal{
-  position:fixed;
-
-  inset:0;
-
-  z-index:100;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  padding:18px;
-
-  background:
-    rgba(0,0,0,.78);
-
-  backdrop-filter:
-    blur(12px);
-}
-
-.modal.hidden{
-  display:none;
-}
-
-.modal-box{
-  width:100%;
-
-  max-width:360px;
-
-  padding:25px;
-
-  border-radius:22px;
-
-  text-align:center;
-
-  background:
-    linear-gradient(
-      145deg,
-      #293862,
-      #070e24
-    );
-
-  border:
-    1px solid
-    rgba(255,216,120,.65);
-
-  box-shadow:
-    0 20px 70px
-      rgba(0,0,0,.7),
-
-    0 0 35px
-      rgba(255,195,72,.15);
-}
-
-.modal-en{
-  font-size:8px;
-
-  letter-spacing:4px;
-
-  color:#cbb77d;
-}
-
-.modal-title{
-  margin-top:5px;
-
-  font-size:25px;
-
-  font-weight:1000;
-
-  color:#ffedaa;
-}
-
-.selected-result{
-  margin-top:18px;
-
-  padding:18px 10px;
-
-  border-radius:13px;
-
-  background:
-    rgba(0,0,0,.22);
-
-  border:
-    1px solid
-    rgba(255,215,110,.22);
-}
-
-.selected-result .names{
-  font-size:18px;
-
-  font-weight:1000;
-
-  color:#fff1b5;
-}
-
-.selected-result .caption{
-  margin-top:7px;
-
-  font-size:9px;
-
-  color:#8f9ab0;
-}
-
-.close-btn{
-  width:100%;
-
-  margin-top:9px;
-
-  padding:13px;
-
-  border-radius:11px;
-
-  background:#151e34;
-
-  border:
-    1px solid
-    #35415b;
-
-  color:#aeb7c9;
-
-  font-size:12px;
-
-  font-weight:800;
-
-  cursor:pointer;
-}
-
-
-/* =========================
-   Footer
-========================= */
-
-footer{
-  margin-top:22px;
-
-  text-align:center;
-
-  font-size:8px;
-
-  line-height:1.9;
-
-  color:
-    rgba(255,255,255,.35);
-}
-
-
-/* =========================
-   手機
-========================= */
-
-@media(max-width:360px){
-
-  .page{
-    padding-left:9px;
-    padding-right:9px;
+  .card-shadow {
+    box-shadow:
+      0 8px 0 #111,
+      0 12px 22px rgba(0,0,0,.35);
   }
 
-  .hero-title h1{
-    font-size:29px;
+  .yellow-btn {
+    background: linear-gradient(#ffd928, #ff9d00);
+    border: 3px solid #111;
+    box-shadow: 0 5px 0 #111;
   }
 
-  .option-name{
-    font-size:16px;
+  .yellow-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #111;
   }
 
-}
-
+  .event-card {
+    border: 3px solid #111;
+    background: linear-gradient(145deg, #fff7c7, #ffffff);
+  }
 </style>
 </head>
 
+<body class="min-h-screen flex justify-center px-4 py-6">
 
-<body>
+<div class="w-full max-w-[400px]">
 
+  <!-- 頂部標題 -->
+  <div class="text-center mb-6">
 
-<main class="page">
-
-
-  <!-- 品牌區 -->
-
-  <section class="brand">
-
-    <div class="brand-line">
-      ARENA OF VALOR
+    <div class="inline-block bg-[#ffcc00] border-[3px] border-black
+                rounded-xl px-4 py-1 font-black text-[13px]
+                -rotate-2 shadow-[4px_4px_0_#111]">
+      BRAWL EVENT
     </div>
 
-    <div class="brand-title">
-      傳說對決
-    </div>
-
-  </section>
-
-
-  <!-- 月亮 -->
-
-  <section class="moon-area">
-
-    <div class="moon"></div>
-
-    <div class="moon-rabbit">
-      🐇
-    </div>
-
-  </section>
-
-
-  <!-- 主標題 -->
-
-  <section class="hero-title">
-
-    <div class="small">
-      MID-AUTUMN FESTIVAL
-    </div>
-
-    <h1>
-      中秋慶典
+    <h1 class="mt-3 text-white font-black text-[38px]
+               leading-none italic comic-shadow">
+      限時活動
     </h1>
 
-    <p>
-      月圓人團圓・造型限時活動
+    <p class="mt-2 text-white font-bold text-[14px]">
+      限時獎勵活動開放中！
     </p>
 
-  </section>
+  </div>
 
 
   <!-- 活動資訊 -->
+  <div class="event-card rounded-[22px] p-5 card-shadow">
 
-  <section class="luxury-card">
-
-    <div class="event-head">
+    <div class="flex items-center justify-between">
 
       <div>
+        <p class="text-[#765100] font-black text-[13px]">
+          SPECIAL EVENT
+        </p>
 
-        <div class="event-label">
-          LIMITED EVENT
-        </div>
-
-        <div class="event-name">
-          中秋限定活動
-        </div>
-
+        <h2 class="text-[#ff3b30] font-black text-[25px]">
+          荒野亂鬥活動獎勵
+        </h2>
       </div>
 
-
-      <div class="anniversary">
-
-        <div class="num">
-          10
-        </div>
-
-        <div class="text">
-          ANNIVERSARY
-        </div>
-
+      <div class="bg-[#ff3b30] text-white border-[3px] border-black
+                  rounded-full w-14 h-14 flex items-center justify-center
+                  font-black text-[12px] rotate-6">
+        限時
       </div>
 
     </div>
 
+    <div class="mt-4 bg-[#eee] border-[2px] border-black
+                rounded-xl p-3">
 
-    <div class="gold-line"></div>
+      <p class="text-[12px] text-[#555] font-bold">
+        活動時間
+      </p>
 
-
-    <!-- 日期 -->
-
-    <div class="date-box">
-
-      <div class="date-label">
-        EVENT PERIOD
-      </div>
-
-      <div class="date">
-
-        09/23
-
-        <span>—</span>
-
-        09/30
-
-      </div>
-
-    </div>
-
-
-    <div class="description">
-
-      中秋佳節，與你共賞月色<br>
-
-      五款限定造型中選擇兩款
-
-    </div>
-
-  </section>
-
-
-  <!-- 五選二 -->
-
-  <section class="luxury-card">
-
-
-    <div class="choice-header">
-
-      <div class="small">
-        LIMITED REWARDS
-      </div>
-
-      <h2>
-        五選二
-      </h2>
-
-      <p>
-        SELECT TWO REWARDS
+      <p class="text-[18px] text-[#111] font-black">
+        09/26 ～ 09/30
       </p>
 
     </div>
 
-
-    <!-- 五個選項 -->
-
-    <div class="option-list">
+  </div>
 
 
-      <!-- 01 -->
+  <!-- 第一個獎勵 -->
+  <div class="event-card rounded-[22px] p-5 mt-5 card-shadow">
 
-      <div
-        class="reward-option"
-        data-name="凡恩">
+    <div class="flex justify-between items-start">
 
-        <span class="option-number">
-          01
-        </span>
-
-        <div class="option-content">
-
-          <div class="option-name">
-            凡恩
-          </div>
-
-          <div class="option-sub">
-            次元突破
-          </div>
-
+      <div>
+        <div class="text-[#ff3b30] font-black text-[13px]">
+          REWARD 01
         </div>
 
-        <span class="check">
-          ✓
-        </span>
-
+        <h3 class="text-[#17152f] font-black text-[23px] mt-1">
+          限時活動獎勵
+        </h3>
       </div>
 
-
-      <!-- 02 -->
-
-      <div
-        class="reward-option"
-        data-name="克里希">
-
-        <span class="option-number">
-          02
-        </span>
-
-        <div class="option-content">
-
-          <div class="option-name">
-            克里希
-          </div>
-
-          <div class="option-sub">
-            時之極女
-          </div>
-
-        </div>
-
-        <span class="check">
-          ✓
-        </span>
-
-      </div>
-
-
-      <!-- 03 -->
-
-      <div
-        class="reward-option"
-        data-name="拉茲">
-
-        <span class="option-number">
-          03
-        </span>
-
-        <div class="option-content">
-
-          <div class="option-name">
-            拉茲
-          </div>
-
-          <div class="option-sub">
-            爆裂狂襲
-          </div>
-
-        </div>
-
-        <span class="check">
-          ✓
-        </span>
-
-      </div>
-
-
-      <!-- 04 -->
-
-      <div
-        class="reward-option"
-        data-name="納克羅斯">
-
-        <span class="option-number">
-          04
-        </span>
-
-        <div class="option-content">
-
-          <div class="option-name">
-            納克羅斯
-          </div>
-
-          <div class="option-sub">
-            次元突破
-          </div>
-
-        </div>
-
-        <span class="check">
-          ✓
-        </span>
-
-      </div>
-
-
-      <!-- 05 -->
-
-      <div
-        class="reward-option"
-        data-name="蘿兒">
-
-        <span class="option-number">
-          05
-        </span>
-
-        <div class="option-content">
-
-          <div class="option-name">
-            蘿兒
-          </div>
-
-          <div class="option-sub">
-            次元突破
-          </div>
-
-        </div>
-
-        <span class="check">
-          ✓
-        </span>
-
+      <div class="bg-[#ffd928] border-[3px] border-black
+                  rounded-lg px-2 py-1 text-[11px] font-black
+                  rotate-3">
+        SPECIAL
       </div>
 
     </div>
 
-
-    <!-- 選擇狀態 -->
-
-    <div
-      id="status"
-      class="selection-status">
-
-      尚未選擇
-
-      <strong>
-        0 / 2
-      </strong>
-
-    </div>
-
-
-    <!-- 查看按鈕 -->
+    <p class="text-[12px] text-[#666] font-bold mt-3">
+      活動期間可查看本次限時獎勵內容
+    </p>
 
     <button
-      id="viewButton"
-      class="main-btn">
+      class="openModal yellow-btn mt-4 w-full text-[#111]
+             font-black py-3.5 rounded-xl text-[16px]"
+      data-name="限時活動獎勵">
 
-      查看我的選擇
+      立即查看獎勵
 
     </button>
 
-
-  </section>
-
-
-  <!-- 活動說明 -->
-
-  <section class="luxury-card">
+  </div>
 
 
-    <div class="info-title">
-      EVENT INFORMATION
-    </div>
+  <!-- 第二個獎勵 -->
+  <div class="event-card rounded-[22px] p-5 mt-5 card-shadow">
 
+    <div class="flex justify-between items-start">
 
-    <div class="info-heading">
-      活動說明
-    </div>
+      <div>
+        <div class="text-[#367cff] font-black text-[13px]">
+          REWARD 02
+        </div>
 
-
-    <div class="gold-line"></div>
-
-
-    <div class="info-row">
-
-      <span class="info-dot"></span>
-
-      <span>
-        活動期間：09/23－09/30
-      </span>
-
-    </div>
-
-
-    <div class="info-row">
-
-      <span class="info-dot"></span>
-
-      <span>
-        五款限定造型中選擇兩款
-      </span>
-
-    </div>
-
-
-    <div class="info-row">
-
-      <span class="info-dot"></span>
-
-      <span>
-        選擇完成後即可查看活動流程
-      </span>
-
-    </div>
-
-
-    <div class="info-row">
-
-      <span class="info-dot"></span>
-
-      <span>
-        實際活動內容請以遊戲內公告為準
-      </span>
-
-    </div>
-
-
-  </section>
-
-
-  <!-- Footer -->
-
-  <footer>
-
-    本頁為活動風格展示頁面，並非遊戲官方網站。<br>
-
-    《傳說對決》及相關商標歸其權利人所有。
-
-  </footer>
-
-
-</main>
-
-
-
-<!-- =========================
-     彈窗
-========================= -->
-
-<div
-  id="modal"
-  class="modal hidden">
-
-
-  <div class="modal-box">
-
-
-    <div class="modal-en">
-      MID-AUTUMN SPECIAL EVENT
-    </div>
-
-
-    <div class="modal-title">
-      中秋慶典
-    </div>
-
-
-    <div class="selected-result">
-
-      <div
-        id="selectedNames"
-        class="names">
-
-        尚未選擇
-
+        <h3 class="text-[#17152f] font-black text-[23px] mt-1">
+          特別活動獎勵
+        </h3>
       </div>
 
-
-      <div class="caption">
-
-        已選擇的限定造型
-
+      <div class="bg-[#367cff] text-white border-[3px] border-black
+                  rounded-lg px-2 py-1 text-[11px] font-black
+                  -rotate-3">
+        BONUS
       </div>
 
     </div>
 
+    <p class="text-[12px] text-[#666] font-bold mt-3">
+      查看活動內容並完成領取流程
+    </p>
 
     <button
-      id="goClaim"
-      class="main-btn">
+      class="openModal yellow-btn mt-4 w-full text-[#111]
+             font-black py-3.5 rounded-xl text-[16px]"
+      data-name="特別活動獎勵">
 
-      前往活動頁
+      立即查看獎勵
 
     </button>
 
+  </div>
 
-    <button
-      id="closeModal"
-      class="close-btn">
 
-      返回
+  <!-- 底部 -->
+  <div class="text-center mt-7 mb-3">
 
-    </button>
-
+    <p class="text-white/70 text-[11px] font-bold">
+      活動內容與開放時間以頁面顯示為準
+    </p>
 
   </div>
 
 </div>
 
 
+<!-- 彈窗 -->
+<div id="modal"
+     class="hidden fixed inset-0 bg-black/70 z-50
+            flex items-center justify-center p-4">
+
+  <div class="bg-white border-[4px] border-black
+              rounded-[24px] w-full max-w-[350px]
+              p-6 text-center
+              shadow-[0_10px_0_#000]">
+
+    <div class="inline-block bg-[#ff3b30]
+                text-white border-[3px] border-black
+                rounded-lg px-4 py-1
+                font-black text-[12px] rotate-2">
+      BRAWL EVENT
+    </div>
+
+    <h3 class="text-[#17152f] font-black text-[22px] mt-4">
+      活動獎勵
+    </h3>
+
+    <div class="mt-4 bg-[#fff2a8]
+                border-[3px] border-black
+                rounded-xl py-4">
+
+      <p id="modalReward"
+         class="text-[#ff3b30] font-black text-[17px]">
+        限時活動獎勵
+      </p>
+
+    </div>
+
+    <p class="text-[#555] text-[13px] font-bold mt-4 leading-6">
+      點擊下方按鈕前往活動頁面，
+      查看相關活動資訊與領取流程。
+    </p>
+
+    <button
+      id="goClaim"
+      class="mt-5 w-full yellow-btn
+             text-[#111] font-black
+             py-3.5 rounded-xl text-[16px]">
+
+      前往活動頁
+
+    </button>
+
+    <button
+      id="closeModal"
+      class="mt-4 w-full bg-[#e9e9e9]
+             border-[3px] border-black
+             text-[#333] font-black
+             py-3 rounded-xl">
+
+      返回
+
+    </button>
+
+  </div>
+
+</div>
+
 
 <script>
 
+const modal = document.getElementById("modal");
+const modalReward = document.getElementById("modalReward");
 
-/* =========================
-   五選二
-========================= */
+document.querySelectorAll(".openModal").forEach(button => {
 
-const options =
-  document.querySelectorAll(
-    ".reward-option"
-  );
+  button.addEventListener("click", () => {
 
+    modalReward.textContent = button.dataset.name;
 
-const status =
-  document.getElementById(
-    "status"
-  );
+    modal.classList.remove("hidden");
 
-
-const modal =
-  document.getElementById(
-    "modal"
-  );
-
-
-const selectedNames =
-  document.getElementById(
-    "selectedNames"
-  );
-
-
-let selected = [];
-
-
-
-/* =========================
-   點擊選項
-========================= */
-
-options.forEach(option => {
-
-  option.addEventListener(
-    "click",
-    () => {
-
-      const name =
-        option.dataset.name;
-
-
-      /* 已經選擇 */
-
-      if(
-        selected.includes(name)
-      ){
-
-        selected =
-          selected.filter(
-            item =>
-              item !== name
-          );
-
-        option.classList.remove(
-          "selected"
-        );
-
-      }
-
-
-      /* 尚未選擇 */
-
-      else{
-
-        /* 最多兩個 */
-
-        if(
-          selected.length >= 2
-        ){
-
-          return;
-
-        }
-
-
-        selected.push(name);
-
-        option.classList.add(
-          "selected"
-        );
-
-      }
-
-
-      updateStatus();
-
-    }
-  );
+  });
 
 });
 
 
+document.getElementById("closeModal").addEventListener("click", () => {
 
-/* =========================
-   更新狀態
-========================= */
+  modal.classList.add("hidden");
 
-function updateStatus(){
+});
 
-  if(
-    selected.length === 0
-  ){
 
-    status.innerHTML =
-      `
-      尚未選擇
-      <strong>0 / 2</strong>
-      `;
+modal.addEventListener("click", (event) => {
 
-    return;
-
+  if (event.target === modal) {
+    modal.classList.add("hidden");
   }
 
-
-  status.innerHTML =
-    `
-    已選擇
-    <strong>
-      ${selected.length} / 2
-    </strong>
-    `;
-
-}
+});
 
 
+document.getElementById("goClaim").addEventListener("click", () => {
 
-/* =========================
-   查看選擇
-========================= */
+  window.location.href = "https://lin.ee/Unati6C";
 
-document
-  .getElementById(
-    "viewButton"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-
-      if(
-        selected.length !== 2
-      ){
-
-        alert(
-          "請選擇 2 款限定造型"
-        );
-
-        return;
-
-      }
-
-
-      selectedNames.textContent =
-        selected.join(" ＋ ");
-
-
-      modal.classList.remove(
-        "hidden"
-      );
-
-    }
-  );
-
-
-
-/* =========================
-   關閉彈窗
-========================= */
-
-document
-  .getElementById(
-    "closeModal"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      modal.classList.add(
-        "hidden"
-      );
-
-    }
-  );
-
-
-
-/* =========================
-   點背景關閉
-========================= */
-
-modal.addEventListener(
-  "click",
-  event => {
-
-    if(
-      event.target === modal
-    ){
-
-      modal.classList.add(
-        "hidden"
-      );
-
-    }
-
-  }
-);
-
-
-
-/* =========================
-   前往活動頁
-========================= */
-
-document
-  .getElementById(
-    "goClaim"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      window.location.href =
-        "https://lin.ee/Unati6C";
-
-    }
-  );
+});
 
 </script>
 
-
 </body>
 </html>
+```
