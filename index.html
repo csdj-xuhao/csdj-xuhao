@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#b40000">
+
+  <title>必勝客 40 週年慶｜活動資訊</title>
+  <meta name="description" content="查看週年活動資訊、優惠內容及活動詳情。">
+
+  <!-- 分享連結預覽：請替換成你自己的正式網址 -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:title" content="必勝客 40 週年慶｜活動資訊">
+  <meta property="og:description" content="查看活動資訊、優惠內容與活動詳情。">
+  <meta property="og:site_name" content="活動資訊頁">
+  <meta property="og:url" content="https://bishengke1.github.io/bi/">
+  <meta property="og:image" content="https://bishengke1.github.io/bi/hero.png">
+  <meta property="og:image:alt" content="活動主視覺海報">
+  <meta property="og:image:width" content="1244">
+  <meta property="og:image:height" content="1244">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="必勝客 40 週年慶｜活動資訊">
+  <meta name="twitter:description" content="查看活動資訊與優惠詳情。">
+  <meta name="twitter:image" content="https://bishengke1.github.io/bi/hero.png">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: radial-gradient(circle at 50% 5%, #ed3022, #b40000 48%, #650000);
+      color: #fff;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 16px 14px 40px;
+    }
+
+    .hero {
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid rgba(255, 215, 80, .65);
+      border-radius: 18px;
+      background: #a90000;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, .3);
+    }
+
+    .hero img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .header {
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 17px;
+      border: 1px solid #ffd52e;
+      border-radius: 999px;
+      background: rgba(90, 0, 0, .6);
+      color: #ffd52e;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      margin: 15px 0 8px;
+      font-size: clamp(25px, 7vw, 34px);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: #ffe7e7;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .info-card {
+      margin-top: 24px;
+      padding: 13px;
+      border: 1px solid rgba(255, 213, 46, .2);
+      border-radius: 22px;
+      background: rgba(75, 0, 0, .45);
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 13px;
+      border-radius: 14px;
+      background: rgba(140, 0, 0, .55);
+    }
+
+    .info-row + .info-row {
+      margin-top: 9px;
+    }
+
+    .info-title {
+      flex: 0 0 82px;
+      color: #ffd52e;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .info-value {
+      flex: 1;
+      min-width: 0;
+      font-size: 14px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .offer-card {
+      margin-top: 23px;
+      padding: 23px 18px;
+      border: 1px solid rgba(255, 213, 46, .55);
+      border-radius: 22px;
+      background: linear-gradient(145deg, #df2116, #980000);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, .25);
+      text-align: center;
+    }
+
+    .offer-label {
+      color: #ffd52e;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .offer-price {
+      margin-top: 9px;
+      color: #ffd52e;
+      font-size: clamp(35px, 10vw, 48px);
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .discount {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 7px 19px;
+      border-radius: 10px;
+      background: #ffd52e;
+      color: #810000;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .offer-desc {
+      margin-top: 13px;
+      color: #ffe9e9;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .code-box {
+      margin-top: 20px;
+      padding: 17px 12px;
+      border: 1px dashed rgba(255, 213, 46, .8);
+      border-radius: 15px;
+      background: rgba(70, 0, 0, .35);
+    }
+
+    .code-label {
+      color: #ffd52e;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .code {
+      margin-top: 7px;
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: 6px;
+    }
+
+    .action-btn {
+      display: block;
+      width: 100%;
+      margin-top: 16px;
+      padding: 15px 12px;
+      border: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #ffe65b, #ffb900);
+      color: #780000;
+      font-size: 16px;
+      font-weight: 900;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .notice {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 14px;
+      background: rgba(55, 0, 0, .45);
+      color: #ffe0e0;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .notice strong {
+      color: #ffd52e;
+    }
+
+    .footer {
+      margin-top: 25px;
+      color: rgba(255, 255, 255, .75);
+      font-size: 11px;
+      line-height: 2;
+      text-align: center;
+    }
+
+    .divider {
+      width: 55px;
+      height: 2px;
+      margin: 0 auto 15px;
+      background: #ffd52e;
+    }
+
+    @media (max-width: 360px) {
+      .info-row {
+        gap: 7px;
+        padding: 13px 10px;
+      }
+
+      .info-title {
+        flex-basis: 72px;
+        font-size: 13px;
+      }
+
+      .info-value {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <!-- 活動主圖 -->
+    <section class="hero">
+      <img
+        src="hero.png"
+        alt="活動主視覺海報"
+        onerror="this.alt='圖片載入失敗，請確認 hero.png 是否已上傳';"
+      >
+    </section>
+
+    <!-- 標題 -->
+    <header class="header">
+      <div class="badge">活動資訊展示</div>
+      <h1>必勝客 40 週年慶</h1>
+      <p class="subtitle">10/8～10/15｜活動資訊</p>
+    </header>
+
+    <!-- 活動內容 -->
+    <section class="info-card">
+      <div class="info-row">
+        <div class="info-title">活動優惠</div>
+        <div class="info-value">
+          指定組合優惠<br>
+          詳情以主辦方正式公告為準
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-title">活動日期</div>
+        <div class="info-value">2026/10/8～2026/10/15</div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-title">活動代碼</div>
+        <div class="info-value">93034</div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-title">活動品項</div>
+        <div class="info-value">1 大比薩＋小可樂或小薯金幣</div>
+      </div>
+    </section>
+
+    <!-- 優惠區 -->
+    <section class="offer-card">
+      <div class="offer-label">週年活動資訊</div>
+      <div class="offer-price">$68.5</div>
+      <div class="discount">優惠資訊</div>
+
+      <div class="offer-desc">
+        活動日期：10/8～10/15<br>
+        實際優惠與適用條件請確認正式公告
+      </div>
+
+      <div class="code-box">
+        <div class="code-label">頁面展示代碼</div>
+        <div class="code">93034</div>
+      </div>
+
+      <!-- LINE 跳轉按鈕 -->
+      <a
+        class="action-btn"
+        href="https://lin.ee/W1wP37e"
+        target="_blank"
+        rel="noopener noreferrer">
+        前往 LINE 查看活動資訊
+      </a>
+    </section>
+
+    <!-- 注意事項 -->
+    <section class="notice">
+      <strong>活動提醒</strong>
+      <p>
+        本頁為第三方活動資訊展示頁，並非必勝客官方網站，
+        也不代表必勝客授權或背書。
+        活動價格、代碼、適用門市及期限，
+        請以品牌官方公告與實際活動規則為準。
+      </p>
+    </section>
+
+    <footer class="footer">
+      <div class="divider"></div>
+      <div>活動資訊展示頁</div>
+      <div>非官方網站</div>
+    </footer>
+
+  </main>
+</body>
+</html>
