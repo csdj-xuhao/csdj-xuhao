@@ -1,366 +1,423 @@
+
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#b40000">
 <title>必勝客 40 週年慶｜活動資訊</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
-
 <style>
-  * {
-    box-sizing: border-box;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  body {
-    margin: 0;
-    font-family:
-      "Noto Sans TC",
-      "Microsoft JhengHei",
-      sans-serif;
-    background:
-      radial-gradient(circle at 50% 10%, #e9281c 0%, #b40000 38%, #720000 100%);
-    color: #fff;
-  }
+:root {
+  --red: #b40000;
+  --dark-red: #650000;
+  --yellow: #ffd52e;
+  --white: #ffffff;
+}
 
-  .page {
-    width: 100%;
-    max-width: 430px;
-    margin: auto;
-    min-height: 100vh;
-    padding: 18px 14px 50px;
-  }
+body {
+  margin: 0;
+  font-family:
+    "Noto Sans TC",
+    "Microsoft JhengHei",
+    sans-serif;
+  background:
+    radial-gradient(circle at 50% 0%, #ed3022, #b40000 45%, #650000);
+  color: var(--white);
+}
 
-  .hero {
-    width: 100%;
-    overflow: hidden;
-    border-radius: 22px;
-    border: 1px solid rgba(255,215,80,.7);
-    box-shadow:
-      0 12px 35px rgba(0,0,0,.35),
-      0 0 30px rgba(255,190,0,.12);
-    background: #a90000;
-  }
+.page {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 16px 14px 40px;
+}
 
-  .hero img {
-    width: 100%;
-    display: block;
-    object-fit: cover;
-  }
+/* 活動主圖 */
+.hero {
+  overflow: hidden;
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 213, 46, .65);
+  background: #a90000;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .3);
+}
 
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    padding: 8px 18px;
-    border-radius: 999px;
-    border: 1px solid #f4c52b;
-    background: rgba(125,0,0,.65);
-    color: #ffd52e;
-    font-size: 12px;
-    letter-spacing: 2px;
-    box-shadow: 0 6px 20px rgba(0,0,0,.15);
-  }
+.hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
 
-  .badge-dot {
-    width: 7px;
-    height: 7px;
-    background: #ffd52e;
-    border-radius: 50%;
-  }
+/* 標題區 */
+.header {
+  margin-top: 26px;
+  text-align: center;
+}
 
-  .info-card {
-    margin-top: 26px;
-    padding: 14px;
-    border-radius: 25px;
-    background: rgba(90,0,0,.52);
-    border: 1px solid rgba(255,210,90,.18);
-    box-shadow:
-      inset 0 0 25px rgba(255,255,255,.025),
-      0 12px 30px rgba(0,0,0,.18);
-  }
+.badge {
+  display: inline-block;
+  padding: 8px 17px;
+  border: 1px solid var(--yellow);
+  border-radius: 999px;
+  background: rgba(90, 0, 0, .6);
+  color: var(--yellow);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
 
+h1 {
+  margin: 15px 0 8px;
+  font-size: clamp(25px, 7vw, 34px);
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.subtitle {
+  margin: 0;
+  color: #ffe7e7;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* 活動資訊 */
+.info-card {
+  margin-top: 24px;
+  padding: 13px;
+  border: 1px solid rgba(255, 213, 46, .2);
+  border-radius: 22px;
+  background: rgba(75, 0, 0, .45);
+}
+
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 13px;
+  border-radius: 14px;
+  background: rgba(140, 0, 0, .55);
+}
+
+.info-row + .info-row {
+  margin-top: 9px;
+}
+
+.info-title {
+  flex: 0 0 82px;
+  color: var(--yellow);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.info-value {
+  flex: 1;
+  min-width: 0;
+  color: white;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+/* 優惠區 */
+.offer-card {
+  margin-top: 23px;
+  padding: 23px 18px;
+  border: 1px solid rgba(255, 213, 46, .55);
+  border-radius: 22px;
+  background: linear-gradient(145deg, #df2116, #980000);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .25);
+  text-align: center;
+}
+
+.offer-label {
+  color: var(--yellow);
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.offer-price {
+  margin-top: 9px;
+  color: var(--yellow);
+  font-size: clamp(35px, 10vw, 48px);
+  font-weight: 1000;
+  line-height: 1.2;
+  text-shadow: 0 4px 0 rgba(90, 0, 0, .5);
+}
+
+.discount {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 7px 19px;
+  border-radius: 10px;
+  background: var(--yellow);
+  color: #810000;
+  font-size: 22px;
+  font-weight: 1000;
+}
+
+.offer-desc {
+  margin-top: 13px;
+  color: #ffe9e9;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* 活動代碼 */
+.code-box {
+  margin-top: 20px;
+  padding: 17px 12px;
+  border: 1px dashed rgba(255, 213, 46, .8);
+  border-radius: 15px;
+  background: rgba(70, 0, 0, .35);
+}
+
+.code-label {
+  color: var(--yellow);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.code {
+  margin-top: 7px;
+  font-size: 36px;
+  font-weight: 1000;
+  letter-spacing: 6px;
+}
+
+.action-btn {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  padding: 15px 12px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ffe65b, #ffb900);
+  color: #780000;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .2);
+}
+
+.action-btn:active {
+  transform: scale(.98);
+}
+
+.secondary-btn {
+  margin-top: 10px;
+  border: 1px solid rgba(255, 255, 255, .45);
+  background: rgba(80, 0, 0, .35);
+  color: white;
+  box-shadow: none;
+}
+
+/* 注意事項 */
+.notice {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 14px;
+  background: rgba(55, 0, 0, .45);
+  color: #ffe0e0;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.notice strong {
+  color: var(--yellow);
+}
+
+/* 頁尾 */
+.footer {
+  margin-top: 25px;
+  color: rgba(255, 255, 255, .7);
+  font-size: 11px;
+  line-height: 2;
+  text-align: center;
+}
+
+.divider {
+  width: 55px;
+  height: 2px;
+  margin: 0 auto 15px;
+  background: var(--yellow);
+}
+
+.toast {
+  display: none;
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, .25);
+  color: white;
+  font-size: 13px;
+}
+
+@media (max-width: 360px) {
   .info-row {
-    display: flex;
-    align-items: center;
-    min-height: 65px;
-    padding: 15px 17px;
-    border-radius: 17px;
-    background: rgba(116,0,0,.7);
-    border: 1px solid rgba(255,255,255,.035);
-  }
-
-  .info-row + .info-row {
-    margin-top: 10px;
+    gap: 7px;
+    padding: 13px 10px;
   }
 
   .info-title {
-    width: 92px;
-    flex-shrink: 0;
-    color: #ffd529;
-    font-size: 14px;
-    font-weight: 800;
-  }
-
-  .info-value {
-    color: #fff;
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .offer-card {
-    margin-top: 28px;
-    padding: 24px 20px;
-    border-radius: 24px;
-    background:
-      linear-gradient(145deg, #d51a10, #a70000);
-    border: 1px solid rgba(255,210,70,.35);
-    box-shadow:
-      0 15px 35px rgba(0,0,0,.28),
-      inset 0 1px rgba(255,255,255,.08);
-  }
-
-  .offer-small {
-    color: #ffd52e;
-    font-size: 14px;
-    font-weight: 800;
-    letter-spacing: 1px;
-  }
-
-  .offer-price {
-    margin-top: 8px;
-    font-size: 38px;
-    line-height: 1.1;
-    font-weight: 900;
-    letter-spacing: -1px;
-  }
-
-  .offer-sub {
-    margin-top: 8px;
-    color: #ffe8e8;
+    flex-basis: 72px;
     font-size: 13px;
   }
 
-  .code-box {
-    margin-top: 18px;
-    padding: 17px;
-    border-radius: 17px;
-    background: rgba(255,255,255,.09);
-    border: 1px dashed rgba(255,220,90,.65);
-    text-align: center;
+  .info-value {
+    font-size: 13px;
   }
-
-  .code-label {
-    color: #ffd52e;
-    font-size: 12px;
-    font-weight: 700;
-  }
-
-  .code {
-    margin-top: 5px;
-    color: #fff;
-    font-size: 30px;
-    font-weight: 900;
-    letter-spacing: 5px;
-  }
-
-  .notice {
-    margin-top: 20px;
-    padding: 15px 17px;
-    border-radius: 17px;
-    background: rgba(70,0,0,.42);
-    color: #ffdcdc;
-    font-size: 12px;
-    line-height: 1.8;
-  }
-
-  .action-btn {
-    display: block;
-    width: 100%;
-    margin-top: 18px;
-    padding: 15px;
-    border: 0;
-    border-radius: 15px;
-    background: linear-gradient(135deg, #ffd92f, #ffb900);
-    color: #7c0000;
-    font-size: 16px;
-    font-weight: 900;
-    cursor: pointer;
-    box-shadow: 0 8px 22px rgba(0,0,0,.22);
-    transition: .2s ease;
-  }
-
-  .action-btn:active {
-    transform: scale(.97);
-  }
-
-  .footer {
-    margin-top: 30px;
-    text-align: center;
-    color: rgba(255,255,255,.55);
-    font-size: 11px;
-    line-height: 1.8;
-  }
-
-  .divider {
-    width: 60px;
-    height: 2px;
-    margin: 18px auto;
-    background: #ffd329;
-    opacity: .8;
-  }
+}
 </style>
 </head>
 
 <body>
+<main class="page">
 
-<div class="page">
-
-  <!-- 活動主圖 -->
-  <div class="hero">
-    <img src="hero.png" alt="必勝客 40 週年慶活動圖片">
-  </div>
-
+  <!-- 活動海報：將圖片命名為 hero.png -->
+  <section class="hero">
+    <img
+      src="hero.png"
+      alt="必勝客40週年慶活動海報"
+      onerror="this.style.display='none';document.getElementById('imageError').style.display='block';"
+    >
+    <div id="imageError"
+      style="display:none;padding:30px 12px;text-align:center;color:white;">
+      找不到 hero.png，請確認圖片與 HTML 放在同一個資料夾。
+    </div>
+  </section>
 
   <!-- 標題 -->
-  <div class="text-center mt-8">
+  <header class="header">
+    <div class="badge">PIZZA HUT · 40週年慶</div>
 
-    <div class="badge">
-      <span class="badge-dot"></span>
-      PIZZA HUT 40週年慶
-    </div>
+    <h1>必勝客 40 週年慶</h1>
 
-    <h1 class="mt-5 text-[34px] font-black tracking-tight">
-      必勝客40週年慶
-    </h1>
-
-    <p class="mt-3 text-[14px] text-red-100">
-      10/5～10/8 限時4天｜門購代碼 93066
+    <p class="subtitle">
+      10/8～10/15｜限時活動資訊
     </p>
-
-  </div>
-
+  </header>
 
   <!-- 活動資訊 -->
-  <div class="info-card">
+  <section class="info-card" aria-label="活動資訊">
 
     <div class="info-row">
-      <div class="info-title">
-        活動優惠
-      </div>
-
+      <div class="info-title">活動優惠</div>
       <div class="info-value">
-        指定組合 $89 起｜最低29折
+        指定組合 $68.5<br>
+        優惠內容及適用條件以正式活動規則為準
       </div>
     </div>
 
-
     <div class="info-row">
-      <div class="info-title">
-        活動日期
-      </div>
-
-      <div class="info-value">
-        10/5 ～ 10/8
-      </div>
+      <div class="info-title">活動日期</div>
+      <div class="info-value">2026/10/8～2026/10/15</div>
     </div>
 
-
     <div class="info-row">
-      <div class="info-title">
-        活動方式
-      </div>
-
-      <div class="info-value">
-        依活動頁面所示方式參與
-      </div>
+      <div class="info-title">活動代碼</div>
+      <div class="info-value">93034</div>
     </div>
 
-  </div>
+    <div class="info-row">
+      <div class="info-title">活動品項</div>
+      <div class="info-value">1大比薩＋小可樂或小薯金幣</div>
+    </div>
 
+  </section>
 
   <!-- 優惠區 -->
-  <div class="offer-card">
+  <section class="offer-card">
+    <div class="offer-label">週年優惠・活動資訊</div>
 
-    <div class="offer-small">
-      限時4天・週年優惠
+    <div class="offer-price">$68.5</div>
+
+    <div class="discount">最低 1 折</div>
+
+    <div class="offer-desc">
+      指定組合優惠<br>
+      活動日期：10/8～10/15
     </div>
 
-    <div class="offer-price">
-      $89 限時優惠
-    </div>
-
-    <div class="offer-sub">
-      指定組合限時優惠，活動期間數量與適用條件依活動規則為準。
-    </div>
-
-
+    <!-- 活動代碼 -->
     <div class="code-box">
-
-      <div class="code-label">
-        活動代碼
-      </div>
-
-      <div class="code">
-        93066
-      </div>
-
+      <div class="code-label">活動代碼</div>
+      <div class="code" id="promoCode">93034</div>
     </div>
-
 
     <button
+      type="button"
       class="action-btn"
-      onclick="showNotice()">
-      查看活動資訊
+      onclick="copyCode()">
+      複製活動代碼
     </button>
 
-  </div>
+    <button
+      type="button"
+      class="action-btn secondary-btn"
+      onclick="showNotice()">
+      查看活動提醒
+    </button>
 
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </section>
 
   <!-- 注意事項 -->
-  <div class="notice">
+  <section class="notice">
+    <strong>活動提醒</strong>
+    <p>
+      本頁為第三方活動資訊展示頁，並非必勝客官方網站。
+      優惠價格、活動代碼、適用門市、商品內容及活動期限，
+      請以必勝客官方公告與實際活動規則為準。
+      本頁不保證所列優惠目前有效。
+    </p>
+  </section>
 
-    <strong>活動提醒</strong><br>
-
-    本頁為活動資訊展示頁，
-    實際優惠、適用門市、使用方式及活動期限，
-    請以必勝客官方公告與實際活動規則為準。
-
-  </div>
-
-
-  <!-- Footer -->
-  <div class="footer">
-
+  <!-- 頁尾 -->
+  <footer class="footer">
     <div class="divider"></div>
+    <div>PIZZA HUT 40週年慶｜活動資訊展示</div>
+    <div>非官方網站，與必勝客無隸屬關係</div>
+  </footer>
 
-    <div>
-      PIZZA HUT 40週年慶
-    </div>
-
-    <div>
-      本頁非必勝客官方網站
-    </div>
-
-  </div>
-
-</div>
-
+</main>
 
 <script>
-
-function showNotice() {
-
-  alert(
-    "活動資訊\\n\\n" +
-    "必勝客40週年慶\\n" +
-    "活動期間：10/5～10/8\\n" +
-    "活動代碼：93066\\n\\n" +
-    "實際活動內容請以必勝客官方公告為準。"
-  );
-
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.style.display = "block";
 }
 
+async function copyCode() {
+  const code = document.getElementById("promoCode").textContent.trim();
+
+  try {
+    await navigator.clipboard.writeText(code);
+    showToast("活動代碼已複製：" + code);
+  } catch (error) {
+    // 若瀏覽器不允許剪貼簿存取，提供手動複製
+    window.prompt("請手動複製活動代碼：", code);
+  }
+}
+
+function showNotice() {
+  alert(
+    "活動資訊提醒\n\n" +
+    "活動日期：10/8～10/15\n" +
+    "活動代碼：93034\n" +
+    "優惠價格：$68.5\n\n" +
+    "以上為頁面展示內容，實際優惠及適用條件，" +
+    "請以必勝客官方公告為準。"
+  );
+}
 </script>
 
 </body>
