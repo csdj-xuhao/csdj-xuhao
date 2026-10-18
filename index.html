@@ -4,9 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#081321">
-<title>鳴潮 Wuthering Waves｜活動專區</title>
-<meta name="description" content="鳴潮主題粉絲設計頁面，查看活動資訊與相關內容。">
+<meta name="theme-color" content="#07111f">
+<title>鳴潮｜漂泊者活動專區</title>
+<meta name="description" content="鳴潮主題粉絲設計頁面。">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -23,43 +23,27 @@ html {
 
 body {
   margin: 0;
+  background: #050b14;
   color: #edf7ff;
-  background: #07111f;
 }
 
-.hero {
+.hero-visual {
   position: relative;
-  isolation: isolate;
-  min-height: 100vh;
+  min-height: 540px;
+  overflow: hidden;
   background-color: #07111f;
-
   background-image:
     linear-gradient(
       to bottom,
-      rgba(5,15,29,.22) 0%,
-      rgba(5,15,29,.18) 22%,
-      rgba(5,12,23,.58) 43%,
-      rgba(5,11,20,.94) 72%,
+      rgba(5,13,25,.18) 0%,
+      rgba(5,13,25,.08) 35%,
+      rgba(5,11,20,.45) 65%,
       #050b14 100%
     ),
     url('./hero-bg.jpg');
-
-  background-position: center top, center top;
-  background-size: cover, 100% auto;
+  background-size: cover;
+  background-position: center 30%;
   background-repeat: no-repeat;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse at 50% 12%,
-    rgba(91,174,236,.16),
-    transparent 50%
-  );
 }
 
 .glow {
@@ -69,11 +53,11 @@ body {
 .panel {
   background: linear-gradient(
     145deg,
-    rgba(20,43,65,.86),
-    rgba(5,17,31,.94)
+    rgba(20,43,65,.90),
+    rgba(5,17,31,.97)
   );
   border: 1px solid rgba(157,210,255,.38);
-  box-shadow: 0 12px 45px rgba(0,0,0,.3);
+  box-shadow: 0 12px 35px rgba(0,0,0,.28);
   backdrop-filter: blur(10px);
 }
 
@@ -85,13 +69,13 @@ body {
     #d9f3ff
   );
   color: #071727;
-  box-shadow: 0 0 28px rgba(95,183,255,.3);
+  box-shadow: 0 0 28px rgba(95,183,255,.28);
   transition: transform .2s, box-shadow .2s;
 }
 
 .cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 38px rgba(95,183,255,.55);
+  box-shadow: 0 0 38px rgba(95,183,255,.5);
 }
 
 .feature-icon {
@@ -99,9 +83,10 @@ body {
   text-shadow: 0 0 16px rgba(105,192,255,.45);
 }
 
-@media (min-width: 640px) {
-  .hero {
-    background-size: cover, cover;
+@media (max-width: 480px) {
+  .hero-visual {
+    min-height: 540px;
+    background-position: center 30%;
   }
 }
 
@@ -119,10 +104,10 @@ body {
 
 <body>
 
-<main class="hero min-h-screen overflow-hidden">
+<!-- 鳴潮主視覺背景 -->
+<section class="hero-visual">
 
-  <!-- 頁首 -->
-  <header class="max-w-xl mx-auto px-6 pt-7 flex items-center justify-between">
+  <header class="relative max-w-xl mx-auto px-6 pt-7 flex items-center justify-between">
     <div>
       <div class="text-2xl font-black tracking-[.25em]">
         鳴潮
@@ -133,15 +118,14 @@ body {
       </div>
     </div>
 
-    <span class="text-xs tracking-widest text-sky-100/80">
+    <span class="text-xs tracking-widest text-sky-100/90">
       EVENT ARCHIVE
     </span>
   </header>
 
-  <!-- 主視覺與活動內容 -->
-  <section class="max-w-xl mx-auto px-5 pt-44 sm:pt-64 pb-10 text-center">
+  <div class="max-w-xl mx-auto px-5 text-center pt-64 sm:pt-72">
 
-    <p class="text-xs tracking-[.35em] text-sky-200 mb-4">
+    <p class="text-xs tracking-[.3em] text-sky-100 mb-4">
       ROVER · LIMITED EVENT
     </p>
 
@@ -149,4 +133,17 @@ body {
       漂泊者專區
     </h1>
 
-    <p class="mt-5 text-sm leading-7 text-s
+    <p class="mt-4 text-sm leading-7 text-slate-100">
+      穿越寂靜之境，探索全新旅程<br>
+      查看活動資訊與相關內容
+    </p>
+
+  </div>
+</section>
+
+<!-- 活動資訊與領取按鈕 -->
+<main class="relative max-w-xl mx-auto px-5 pb-10">
+
+  <div class="panel rounded-2xl p-5 sm:p-6 mt-1">
+
+    <div
