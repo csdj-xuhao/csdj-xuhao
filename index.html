@@ -1,0 +1,405 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+
+  <title>傳說對決｜專屬福利領取</title>
+  <meta name="description" content="傳說對決專屬福利活動，立即查看活動詳情！">
+
+  <!-- LINE / 社群分享預覽 -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="傳說對決｜專屬福利領取">
+  <meta property="og:description" content="限時活動・遊戲福利・立即查看">
+  <meta property="og:image" content="https://你的網域/aov-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://你的網域/">
+  <meta property="og:site_name" content="傳說對決">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="傳說對決｜專屬福利領取">
+  <meta name="twitter:description" content="限時活動・遊戲福利・立即查看">
+  <meta name="twitter:image" content="https://你的網域/aov-og.jpg">
+
+  <link rel="icon" href="avatar.jpg" type="image/jpeg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      color-scheme: dark;
+      --gold: #d8b779;
+      --text: #f5f0e7;
+      --muted: #c2c6cf;
+      --bg: #101827;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .bg-wrap {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(7, 13, 25, .42),
+          rgba(7, 13, 25, .76) 60%,
+          #101827 100%
+        ),
+        url('bg.jpg') center / cover no-repeat;
+      transform: scale(1.02);
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          ellipse at 50% 35%,
+          rgba(67, 105, 160, .20),
+          transparent 65%
+        );
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px 44px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: .35em;
+      margin-bottom: 12px;
+    }
+
+    .brand {
+      font-size: clamp(30px, 7vw, 48px);
+      line-height: 1.3;
+      font-weight: 900;
+      letter-spacing: .12em;
+      color: #f5e5bd;
+      text-shadow: 0 3px 16px rgba(0, 0, 0, .7);
+    }
+
+    .brand-en {
+      margin-top: 5px;
+      font-size: 11px;
+      letter-spacing: .25em;
+      color: #c5b38c;
+    }
+
+    .gold-line {
+      width: 110px;
+      height: 1px;
+      margin: 22px auto 28px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--gold),
+        transparent
+      );
+    }
+
+    .avatar-ring {
+      width: 116px;
+      height: 116px;
+      padding: 4px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e9d7a8, #70582e, #cfb16d);
+      box-shadow: 0 0 0 6px rgba(8, 16, 30, .45);
+      overflow: hidden;
+    }
+
+    .avatar-ring img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    h1 {
+      margin: 30px 0 0;
+      font-size: clamp(25px, 6vw, 36px);
+      font-weight: 900;
+      letter-spacing: .08em;
+      line-height: 1.45;
+      text-shadow: 0 2px 12px #000;
+    }
+
+    .subtitle {
+      margin-top: 14px;
+      padding: 9px 17px;
+      border: 1px solid rgba(216, 183, 121, .4);
+      border-radius: 3px;
+      background: rgba(8, 15, 29, .72);
+      color: #e4d8c2;
+      font-size: 12px;
+      letter-spacing: .08em;
+    }
+
+    .claim-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      min-width: 235px;
+      margin-top: 34px;
+      padding: 16px 30px;
+      color: #fff8eb;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      background: linear-gradient(135deg, #922e2b, #681b20 65%, #47151a);
+      border: 1px solid #d9b77d;
+      box-shadow:
+        0 8px 24px rgba(0, 0, 0, .4),
+        inset 0 1px rgba(255, 255, 255, .16);
+      transition: transform .2s, filter .2s;
+    }
+
+    .claim-button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.12);
+    }
+
+    .claim-button:active {
+      transform: scale(.98);
+    }
+
+    .hint {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .06em;
+    }
+
+    .features {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      width: min(100%, 650px);
+      margin-top: 42px;
+      padding: 18px 16px;
+      background: rgba(8, 15, 29, .76);
+      border: 1px solid rgba(216, 183, 121, .38);
+    }
+
+    .feature {
+      flex: 1;
+      min-width: 0;
+      text-align: center;
+    }
+
+    .feature-icon {
+      color: var(--gold);
+      font-size: 23px;
+      margin-bottom: 7px;
+    }
+
+    .feature-title {
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .feature-desc {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .feature-divider {
+      width: 1px;
+      height: 42px;
+      background: rgba(216, 183, 121, .4);
+      flex-shrink: 0;
+    }
+
+    .notice {
+      max-width: 360px;
+      margin: 24px 0 0;
+      color: #b7bdc8;
+      font-size: 11px;
+      line-height: 1.9;
+    }
+
+    footer {
+      padding: 22px 16px 25px;
+      text-align: center;
+      color: #8d98aa;
+      font-size: 10px;
+      line-height: 1.9;
+    }
+
+    footer .rule {
+      width: 160px;
+      height: 1px;
+      margin: 0 auto 15px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        #75664a,
+        transparent
+      );
+    }
+
+    @media (max-width: 420px) {
+      .hero {
+        padding: 44px 16px 32px;
+      }
+
+      .avatar-ring {
+        width: 100px;
+        height: 100px;
+      }
+
+      .features {
+        gap: 10px;
+        padding: 15px 8px;
+      }
+
+      .feature-title {
+        font-size: 11px;
+      }
+
+      .feature-desc {
+        font-size: 10px;
+      }
+
+      .feature-divider {
+        height: 32px;
+      }
+
+      .claim-button {
+        width: min(100%, 280px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .claim-button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-wrap" aria-hidden="true"></div>
+  <div class="overlay" aria-hidden="true"></div>
+
+  <main class="content">
+    <section class="hero">
+      <div class="eyebrow">ARENA OF VALOR</div>
+
+      <div class="brand">傳說對決</div>
+      <div class="brand-en">ARENA OF VALOR</div>
+
+      <div class="gold-line"></div>
+
+      <div class="avatar-ring">
+        <img
+          src="avatar.jpg"
+          alt="傳說對決主題頭像"
+          onerror="this.style.display='none'"
+        >
+      </div>
+
+      <h1>專屬福利領取</h1>
+
+      <div class="subtitle">
+        限時活動・遊戲福利・立即查看
+      </div>
+
+      <a
+        class="claim-button"
+        href="https://lin.ee/qq8Pp9m"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span>立即領取</span>
+        <span aria-hidden="true">→</span>
+      </a>
+
+      <p class="hint">點擊按鈕前往 LINE 查看詳情</p>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">✦</div>
+          <div class="feature-title">英雄造型</div>
+          <div class="feature-desc">精選英雄時裝</div>
+        </div>
+
+        <div class="feature-divider"></div>
+
+        <div class="feature">
+          <div class="feature-icon">♜</div>
+          <div class="feature-title">遊戲道具</div>
+          <div class="feature-desc">活動獎勵</div>
+        </div>
+
+        <div class="feature-divider"></div>
+
+        <div class="feature">
+          <div class="feature-icon">♛</div>
+          <div class="feature-title">專屬福利</div>
+          <div class="feature-desc">限時活動</div>
+        </div>
+      </div>
+
+      <p class="notice">
+        活動內容與實際獎勵請以遊戲官方公告為準。
+      </p>
+    </section>
+
+    <footer>
+      <div class="rule"></div>
+      <div>© Arena of Valor Theme Page</div>
+      <div>非官方活動頁面・請以遊戲官方資訊為準</div>
+    </footer>
+  </main>
+</body>
+</html>
+```
