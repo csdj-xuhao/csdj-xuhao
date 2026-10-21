@@ -1,681 +1,384 @@
 ```html
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080d18">
-
-  <title>傳說對決 — 英雄集結・專屬福利</title>
-  <meta name="description" content="傳說對決主題活動頁面，查看活動資訊與遊戲福利。">
-
-  <!-- 社群分享預覽：部署後請替換成真實網址 -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="傳說對決｜英雄集結">
-  <meta property="og:description" content="英雄集結・活動資訊・福利詳情">
-  <meta property="og:image" content="https://你的網域/aov-og.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://你的網域/">
-  <meta property="og:site_name" content="傳說對決">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="傳說對決｜英雄集結">
-  <meta name="twitter:description" content="英雄集結・活動資訊・福利詳情">
-  <meta name="twitter:image" content="https://你的網域/aov-og.jpg">
-
-  <link rel="icon" href="avatar.jpg" type="image/jpeg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #080d18;
-      --panel: rgba(15, 24, 42, .76);
-      --gold: #e6c58a;
-      --white: #f5f5f7;
-      --muted: #929db0;
-      --blue: #7bbcff;
-      --line: rgba(209, 222, 244, .13);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      min-height: 100%;
-      scroll-behavior: smooth;
-      background: var(--bg);
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--white);
-      background: var(--bg);
-      font-family: "Noto Sans TC", sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    .background {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background:
-        linear-gradient(
-          180deg,
-          rgba(5, 10, 21, .28) 0%,
-          rgba(5, 10, 21, .68) 48%,
-          #080d18 100%
-        ),
-        linear-gradient(
-          90deg,
-          rgba(6, 12, 25, .65),
-          transparent 70%
-        ),
-        url("bg.jpg") center 35% / cover no-repeat;
-      transform: scale(1.025);
-    }
-
-    .background::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(
-          ellipse at 72% 24%,
-          rgba(93, 154, 222, .19),
-          transparent 43%
-        ),
-        radial-gradient(
-          ellipse at 15% 55%,
-          rgba(44, 85, 145, .13),
-          transparent 40%
-        );
-    }
-
-    .noise {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      opacity: .16;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
-    }
-
-    .page {
-      position: relative;
-      z-index: 2;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .topbar {
-      width: min(1160px, calc(100% - 64px));
-      margin: 0 auto;
-      min-height: 88px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-    }
-
-    .brand-symbol {
-      width: 39px;
-      height: 39px;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(230, 197, 138, .65);
-      transform: rotate(45deg);
-      color: var(--gold);
-      font-size: 21px;
-    }
-
-    .brand-symbol span {
-      transform: rotate(-45deg);
-    }
-
-    .brand-name {
-      font-size: 17px;
-      font-weight: 800;
-      letter-spacing: .1em;
-    }
-
-    .brand-en {
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 9px;
-      letter-spacing: .23em;
-    }
-
-    .top-status {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      color: #c0c9d8;
-      font-size: 11px;
-      letter-spacing: .1em;
-    }
-
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #8de4be;
-      box-shadow: 0 0 12px rgba(141, 228, 190, .7);
-    }
-
-    main {
-      flex: 1;
-      width: min(1160px, calc(100% - 64px));
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 390px;
-      align-items: center;
-      gap: 64px;
-      padding: 72px 0 78px;
-    }
-
-    .intro {
-      position: relative;
-      max-width: 650px;
-    }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .3em;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 30px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    h1 {
-      margin: 27px 0 0;
-      font-size: clamp(44px, 6vw, 76px);
-      font-weight: 900;
-      line-height: 1.18;
-      letter-spacing: .055em;
-      text-shadow: 0 4px 30px rgba(0, 0, 0, .45);
-    }
-
-    h1 .gold {
-      display: block;
-      color: var(--gold);
-      background: linear-gradient(
-        115deg,
-        #fff1cf 4%,
-        #e3c181 43%,
-        #b58a4c 75%,
-        #f0d8a9 100%
-      );
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .description {
-      max-width: 440px;
-      margin: 25px 0 0;
-      color: #c0cad9;
-      font-size: 14px;
-      line-height: 2.1;
-      letter-spacing: .045em;
-    }
-
-    .mini-line {
-      width: 72px;
-      height: 2px;
-      margin-top: 29px;
-      background: linear-gradient(90deg, var(--gold), transparent);
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 23px;
-    }
-
-    .chip {
-      padding: 7px 12px;
-      border: 1px solid rgba(201, 216, 239, .16);
-      background: rgba(11, 20, 37, .42);
-      color: #d4dceb;
-      font-size: 11px;
-      letter-spacing: .04em;
-    }
-
-    .side {
-      position: relative;
-      padding: 28px;
-      border: 1px solid rgba(214, 225, 244, .17);
-      background:
-        linear-gradient(
-          145deg,
-          rgba(26, 42, 67, .88),
-          rgba(9, 16, 30, .92) 65%
-        );
-      box-shadow: 0 25px 90px rgba(0, 0, 0, .32);
-      backdrop-filter: blur(16px);
-    }
-
-    .side::before,
-    .side::after {
-      content: "";
-      position: absolute;
-      width: 35px;
-      height: 35px;
-      pointer-events: none;
-    }
-
-    .side::before {
-      top: -1px;
-      left: -1px;
-      border-top: 2px solid var(--gold);
-      border-left: 2px solid var(--gold);
-    }
-
-    .side::after {
-      right: -1px;
-      bottom: -1px;
-      border-right: 2px solid var(--gold);
-      border-bottom: 2px solid var(--gold);
-    }
-
-    .side-label {
-      color: var(--gold);
-      font-size: 10px;
-      letter-spacing: .22em;
-    }
-
-    .profile {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-top: 23px;
-      padding-bottom: 23px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .avatar {
-      flex-shrink: 0;
-      width: 76px;
-      height: 76px;
-      padding: 3px;
-      border: 1px solid rgba(230, 197, 138, .7);
-      background: linear-gradient(135deg, #f4dfb2, #635137);
-    }
-
-    .avatar img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .profile-title {
-      font-size: 19px;
-      font-weight: 800;
-      letter-spacing: .05em;
-    }
-
-    .profile-subtitle {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.8;
-    }
-
-    .benefits {
-      display: grid;
-      gap: 0;
-      margin-top: 7px;
-    }
-
-    .benefit {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(201, 216, 239, .09);
-    }
-
-    .benefit-icon {
-      flex-shrink: 0;
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      color: var(--gold);
-      border: 1px solid rgba(230, 197, 138, .28);
-      background: rgba(230, 197, 138, .055);
-      font-size: 17px;
-    }
-
-    .benefit-name {
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .benefit-detail {
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    .cta {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      width: 100%;
-      margin-top: 24px;
-      padding: 17px 19px;
-      overflow: hidden;
-      border: 1px solid #e5c78f;
-      background: linear-gradient(110deg, #e8d3a5, #c4a16a);
-      color: #171a20;
-      text-decoration: none;
-      transition: transform .2s, filter .2s;
-    }
-
-    .cta::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: -80%;
-      width: 50%;
-      transform: skewX(-25deg);
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, .38),
-        transparent
-      );
-      transition: left .55s;
-    }
-
-    .cta:hover::before {
-      left: 140%;
-    }
-
-    .cta:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.07);
-    }
-
-    .cta:active {
-      transform: scale(.99);
-    }
-
-    .cta-text {
-      position: relative;
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: .1em;
-    }
-
-    .cta-sub {
-      position: relative;
-      margin-top: 4px;
-      font-size: 10px;
-      opacity: .72;
-      letter-spacing: .04em;
-    }
-
-    .cta-arrow {
-      position: relative;
-      font-size: 23px;
-    }
-
-    .fineprint {
-      margin: 15px 0 0;
-      color: #8995a9;
-      font-size: 10px;
-      line-height: 1.9;
-      text-align: center;
-    }
-
-    footer {
-      width: min(1160px, calc(100% - 64px));
-      margin: 0 auto;
-      padding: 22px 0 26px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      border-top: 1px solid var(--line);
-      color: #778397;
-      font-size: 10px;
-      letter-spacing: .04em;
-    }
-
-    .footer-brand {
-      color: #a7b2c4;
-      letter-spacing: .12em;
-    }
-
-    @media (max-width: 850px) {
-      main {
-        grid-template-columns: 1fr;
-        gap: 42px;
-        width: min(560px, calc(100% - 40px));
-        padding: 60px 0 54px;
-      }
-
-      .intro {
-        max-width: none;
-      }
-
-      h1 {
-        font-size: clamp(43px, 10vw, 68px);
-      }
-
-      .side {
-        width: 100%;
-        max-width: 500px;
-        margin: 0 auto;
-      }
-
-      .topbar,
-      footer {
-        width: calc(100% - 40px);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .topbar {
-        min-height: 74px;
-      }
-
-      .brand-symbol {
-        width: 32px;
-        height: 32px;
-        font-size: 17px;
-      }
-
-      .brand-name {
-        font-size: 14px;
-      }
-
-      .top-status {
-        font-size: 9px;
-      }
-
-      main {
-        padding-top: 46px;
-      }
-
-      .description {
-        font-size: 13px;
-      }
-
-      .side {
-        padding: 22px 18px;
-      }
-
-      .profile-title {
-        font-size: 17px;
-      }
-
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
-        line-height: 1.8;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *, *::before, *::after {
-        transition: none !important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07152e">
+
+<title>傳說對決｜十週年限定造型展示</title>
+<meta name="description" content="十週年限定主題展示，五款造型任選兩款，活動期間 10/19－10/31。">
+<meta name="robots" content="index,follow">
+
+<!-- LINE、Facebook 等分享預覽 -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="傳說對決十週年主題展示">
+<meta property="og:title" content="傳說對決｜十週年限定造型展示">
+<meta property="og:description" content="五選二・限定造型主題展示｜10/19－10/31">
+<meta property="og:url" content="https://YOUR-USERNAME.github.io/YOUR-REPO/">
+<meta property="og:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/aov-10th-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="傳說對決十週年藍金色主題活動視覺">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="傳說對決｜十週年限定造型展示">
+<meta name="twitter:description" content="五款造型主題展示，選出你喜歡的兩款。">
+<meta name="twitter:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/aov-10th-og.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --blue:#48caff;
+  --gold:#ffe1a0;
+  --navy:#06132c;
+  --panel:rgba(5,19,46,.91);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:#fff;
+  font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;
+  background:
+    radial-gradient(ellipse at 50% 0%,#164b91 0,transparent 42%),
+    radial-gradient(ellipse at 0% 40%,#32156b 0,transparent 35%),
+    linear-gradient(180deg,#071a3b,#030817 80%);
+  overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;
+  opacity:.35;
+  background-image:
+    radial-gradient(circle,#fff 1px,transparent 1.5px),
+    radial-gradient(circle,#65cfff 1px,transparent 1.5px);
+  background-size:83px 83px,137px 137px;
+  background-position:0 0,37px 61px;
+}
+button{font:inherit}
+.page{position:relative;max-width:1000px;margin:auto;padding:22px 18px 45px}
+header{text-align:center}
+.brand{
+  color:var(--gold);font-size:12px;font-weight:900;
+  letter-spacing:3px;
+}
+.anniversary{
+  display:inline-block;margin:13px 0 6px;padding:5px 15px;
+  border:1px solid #d5b96f;border-radius:30px;
+  color:#ffe8ad;background:#081b39;font-size:11px;
+  letter-spacing:2px;
+}
+h1{
+  margin:4px 0;font-size:clamp(44px,9vw,82px);
+  font-weight:900;letter-spacing:8px;
+  background:linear-gradient(#fff,#ffe9ad 38%,#d8a33f 72%,#fff2bf);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;
+  filter:drop-shadow(0 4px 18px #268cff88);
+}
+.subtitle{font-size:13px;letter-spacing:3px;color:#d4e9ff}
+.banner{
+  max-width:740px;margin:25px auto;padding:14px 12px;
+  border:1px solid #e7c779;
+  background:linear-gradient(90deg,#07132d,#163c70,#07132d);
+  box-shadow:0 0 25px #278dff40,inset 0 0 14px #76cfff20;
+  clip-path:polygon(3% 0,97% 0,100% 50%,97% 100%,3% 100%,0 50%);
+  font-weight:900;letter-spacing:3px;color:#ffebbc;
+}
+.intro{margin:10px auto 28px;color:#c4ddfa;font-size:13px}
+.panel{
+  position:relative;margin:22px 0;padding:25px;
+  border:1px solid #5dbfff99;border-radius:18px;
+  background:linear-gradient(145deg,rgba(13,45,91,.92),var(--panel));
+  box-shadow:0 15px 45px #0007,inset 0 0 28px #2b9fff0b;
+}
+.panel:before{
+  content:"";position:absolute;top:0;left:12%;right:12%;height:1px;
+  background:linear-gradient(90deg,transparent,#ffe5a1,#64d6ff,transparent);
+}
+.eyebrow{font-size:10px;letter-spacing:3px;color:#79d7ff}
+h2{margin:5px 0 18px;font-size:25px;color:var(--gold)}
+.dates{
+  display:flex;align-items:center;justify-content:center;
+  gap:clamp(10px,4vw,35px);flex-wrap:wrap;
+  padding:18px 10px;border:1px solid #d5b36e;
+  background:linear-gradient(110deg,#0a1d40,#163c6b,#0a1d40);
+}
+.date-block{text-align:center}
+.date-label{font-size:10px;color:#8fcfff;letter-spacing:2px}
+.date-number{font-size:clamp(32px,6vw,52px);font-weight:900;color:#ffe5a4}
+.date-separator{font-size:24px;color:#66d6ff}
+.notice{text-align:center;color:#a9c7e8;font-size:12px;line-height:1.9;margin-top:16px}
+.reward-grid{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;
+}
+.reward{
+  min-width:0;position:relative;overflow:hidden;cursor:pointer;
+  text-align:center;padding:0 0 13px;
+  border:1px solid #5cbdff99;border-radius:13px;
+  background:linear-gradient(160deg,#193e7a,#07142e 75%);
+  color:white;transition:transform .2s,border-color .2s,box-shadow .2s;
+}
+.reward:nth-child(2),.reward:nth-child(5){border-color:#e78bff99}
+.reward:nth-child(4){border-color:#ffcd68aa}
+.reward:hover{transform:translateY(-4px)}
+.reward.selected{
+  border:2px solid #ffe39a;
+  box-shadow:0 0 20px #4cbcff88,inset 0 0 20px #f5cb6b20;
+  transform:translateY(-3px);
+}
+.art{
+  height:clamp(115px,21vw,230px);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 50% 40%,#8aeaff55,transparent 50%),
+    linear-gradient(145deg,#213d80,#090d29);
+  border-bottom:1px solid #7cd9ff77;
+}
+.reward:nth-child(2) .art,.reward:nth-child(5) .art{
+  background:radial-gradient(ellipse at 50% 40%,#ed8cff66,transparent 50%),linear-gradient(145deg,#5b246c,#100e2b);
+}
+.reward:nth-child(4) .art{
+  background:radial-gradient(ellipse at 50% 40%,#ffe18c66,transparent 50%),linear-gradient(145deg,#6a4b28,#100e2b);
+}
+.art-symbol{font-size:clamp(32px,6vw,64px);filter:drop-shadow(0 0 15px #69cfff)}
+.reward-name{margin:11px 2px 2px;font-size:clamp(12px,1.7vw,17px);font-weight:900}
+.reward-skin{font-size:10px;color:#9dc9f4}
+.check{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:23px;height:23px;margin-top:9px;border-radius:50%;
+  border:1px solid #83caff;color:transparent;font-size:14px;
+}
+.selected .check{background:#ffe4a0;color:#17233c;border-color:#ffe4a0}
+.status{
+  margin-top:20px;text-align:center;font-size:13px;color:#c1d8f6;
+}
+.status strong{color:#ffe4a0}
+.primary{
+  display:block;width:100%;max-width:430px;margin:20px auto 0;
+  padding:15px 18px;border:1px solid #fff0b4;border-radius:9px;
+  color:#261a08;font-weight:900;letter-spacing:2px;cursor:pointer;
+  background:linear-gradient(100deg,#b97928,#fff0b2,#d7a144);
+  box-shadow:0 5px 25px #e8ae4840;transition:.2s;
+}
+.primary:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.primary:focus-visible,.reward:focus-visible,.secondary:focus-visible{
+  outline:3px solid #fff;outline-offset:3px;
+}
+.primary:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.info-row{display:flex;gap:11px;padding:9px 0;color:#c0d4ef;font-size:13px;line-height:1.8}
+.dot{flex:none;width:7px;height:7px;margin-top:8px;border-radius:50%;background:#76d8ff;box-shadow:0 0 9px #76d8ff}
+footer{text-align:center;color:#8198b7;font-size:10px;line-height:2;margin-top:30px}
+.modal{
+  position:fixed;inset:0;z-index:10;padding:20px;
+  display:flex;align-items:center;justify-content:center;
+  background:#020714df;backdrop-filter:blur(10px);
+}
+.modal[hidden]{display:none}
+.modal-box{
+  width:100%;max-width:440px;max-height:90vh;overflow:auto;
+  padding:27px;border:1px solid #72d4ff;border-radius:18px;
+  background:linear-gradient(145deg,#153c73,#050d23);
+  box-shadow:0 0 55px #269bff44;text-align:center;
+}
+.modal-kicker{font-size:10px;letter-spacing:3px;color:#7cdbff}
+.modal-box h2{margin:8px 0 12px}
+.result-names{color:#ffe6a4;font-weight:900;font-size:19px;line-height:1.9}
+.result-note{font-size:12px;line-height:1.8;color:#bad0ec;margin-top:8px}
+.secondary{
+  width:100%;margin-top:10px;padding:12px;border:1px solid #5676a0;
+  border-radius:9px;background:#10264a;color:#d5e7ff;cursor:pointer;
+}
+@media(max-width:600px){
+  .page{padding:18px 11px 35px}
+  .panel{padding:17px 12px;margin:15px 0}
+  .reward-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .reward:last-child{grid-column:1/-1;width:calc(50% - 5px);justify-self:center}
+  .art{height:180px}
+  .reward-name{font-size:15px}
+  .reward-skin{font-size:11px}
+  .banner{font-size:13px;letter-spacing:1px}
+  .subtitle{letter-spacing:1px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;transition:none!important}
+}
+</style>
 </head>
 
 <body>
-  <div class="background" aria-hidden="true"></div>
-  <div class="noise" aria-hidden="true"></div>
+<main class="page">
+  <header>
+    <div class="brand">✦ ARENA OF VALOR ✦</div>
+    <div class="anniversary">10TH ANNIVERSARY · 十週年主題展示</div>
+    <h1>十週年</h1>
+    <div class="subtitle">十年相伴・英雄再聚・一起見證傳說的未來</div>
+    <div class="banner">五選二　◆　限定造型　◆　限時主題展示</div>
+    <p class="intro">FIGHT FOR A BETTER TOMORROW</p>
+  </header>
 
-  <div class="page">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-symbol"><span>✦</span></div>
-        <div>
-          <div class="brand-name">傳說對決</div>
-          <div class="brand-en">ARENA OF VALOR</div>
-        </div>
+  <section class="panel">
+    <div class="eyebrow">LIMITED ANNIVERSARY THEME</div>
+    <h2>活動時間</h2>
+    <div class="dates">
+      <div class="date-block">
+        <div class="date-label">EVENT START</div>
+        <div class="date-number">10/19</div>
       </div>
-
-      <div class="top-status">
-        <span class="status-dot"></span>
-        <span>活動資訊專區</span>
+      <div class="date-separator">✦ ━ ✦</div>
+      <div class="date-block">
+        <div class="date-label">EVENT END</div>
+        <div class="date-number">10/31</div>
       </div>
-    </header>
+    </div>
+    <div class="notice">選擇你最喜歡的兩款造型<br>此頁為非官方主題展示，並非官方獎勵兌換系統。</div>
+  </section>
 
-    <main>
-      <section class="intro">
-        <div class="eyebrow">ENTER THE BATTLEFIELD</div>
+  <section class="panel">
+    <div class="eyebrow">SELECT YOUR FAVORITES</div>
+    <h2>五選二・限定造型</h2>
 
-        <h1>
-          英雄集結
-          <span class="gold">專屬福利</span>
-        </h1>
+    <div class="reward-grid" id="rewards">
+      <button class="reward" type="button" data-name="堇" aria-pressed="false">
+        <div class="art"><span class="art-symbol">✧</span></div>
+        <div class="reward-name">堇</div>
+        <div class="reward-skin">次元突破</div>
+        <span class="check" aria-hidden="true">✓</span>
+      </button>
 
-        <p class="description">
-          為每一場戰鬥而準備。
-          查看活動資訊、英雄造型與遊戲獎勵，
-          開啟你的下一場傳說之戰。
-        </p>
+      <button class="reward" type="button" data-name="特爾安娜絲" aria-pressed="false">
+        <div class="art"><span class="art-symbol">✦</span></div>
+        <div class="reward-name">特爾安娜絲</div>
+        <div class="reward-skin">次元突破</div>
+        <span class="check" aria-hidden="true">✓</span>
+      </button>
 
-        <div class="mini-line"></div>
+      <button class="reward" type="button" data-name="納克羅斯" aria-pressed="false">
+        <div class="art"><span class="art-symbol">❖</span></div>
+        <div class="reward-name">納克羅斯</div>
+        <div class="reward-skin">次元突破</div>
+        <span class="check" aria-hidden="true">✓</span>
+      </button>
 
-        <div class="chips">
-          <span class="chip">HERO COLLECTION</span>
-          <span class="chip">EXCLUSIVE EVENTS</span>
-          <span class="chip">ARENA REWARDS</span>
-        </div>
-      </section>
+      <button class="reward" type="button" data-name="愛里" aria-pressed="false">
+        <div class="art"><span class="art-symbol">✧</span></div>
+        <div class="reward-name">愛里</div>
+        <div class="reward-skin">次元突破</div>
+        <span class="check" aria-hidden="true">✓</span>
+      </button>
 
-      <aside class="side">
-        <div class="side-label">SPECIAL EVENT / 活動專區</div>
+      <button class="reward" type="button" data-name="羅兒" aria-pressed="false">
+        <div class="art"><span class="art-symbol">✦</span></div>
+        <div class="reward-name">羅兒</div>
+        <div class="reward-skin">次元突破</div>
+        <span class="check" aria-hidden="true">✓</span>
+      </button>
+    </div>
 
-        <div class="profile">
-          <div class="avatar">
-            <img src="avatar.jpg" alt="遊戲主題圖"
-                 onerror="this.style.display='none'">
-          </div>
+    <div class="status" id="status" aria-live="polite">
+      已選擇 <strong>0 / 2</strong> 款造型
+    </div>
+    <button class="primary" id="viewButton" type="button" disabled>
+      查看我的選擇
+    </button>
+  </section>
 
-          <div>
-            <div class="profile-title">戰場福利中心</div>
-            <div class="profile-subtitle">
-              英雄資訊・遊戲活動<br>
-              查看最新活動詳情
-            </div>
-          </div>
-        </div>
+  <section class="panel">
+    <div class="eyebrow">EVENT INFORMATION</div>
+    <h2>活動說明</h2>
+    <div class="info-row"><span class="dot"></span><span>主題日期：10/19－10/31。</span></div>
+    <div class="info-row"><span class="dot"></span><span>五款主題造型供你選出最喜歡的兩款。</span></div>
+    <div class="info-row"><span class="dot"></span><span>選擇結果僅供本頁互動展示，不會自動發放遊戲道具。</span></div>
+    <div class="info-row"><span class="dot"></span><span>實際遊戲活動與獎勵資訊，請以遊戲官方公告為準。</span></div>
+  </section>
 
-        <div class="benefits">
-          <div class="benefit">
-            <div class="benefit-icon">✧</div>
-            <div>
-              <div class="benefit-name">英雄造型</div>
-              <div class="benefit-detail">探索英雄外觀與主題內容</div>
-            </div>
-          </div>
+  <footer>
+    本頁為非官方主題展示頁，與遊戲官方無隸屬或合作關係。<br>
+    遊戲名稱及相關商標歸其權利人所有。
+  </footer>
+</main>
 
-          <div class="benefit">
-            <div class="benefit-icon">◇</div>
-            <div>
-              <div class="benefit-name">遊戲道具</div>
-              <div class="benefit-detail">查看活動相關獎勵資訊</div>
-            </div>
-          </div>
+<div class="modal" id="modal" hidden>
+  <section class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-kicker">10TH ANNIVERSARY · THEME DEMO</div>
+    <h2 id="modalTitle">我的造型選擇</h2>
+    <div class="result-names" id="selectedNames"></div>
+    <p class="result-note">這是本頁的選擇結果展示，不代表已取得遊戲獎勵。</p>
+    <button class="primary" id="goClaim" type="button">前往 LINE 頁面</button>
+    <button class="secondary" id="closeModal" type="button">返回修改</button>
+  </section>
+</div>
 
-          <div class="benefit">
-            <div class="benefit-icon">♛</div>
-            <div>
-              <div class="benefit-name">限時活動</div>
-              <div class="benefit-detail">前往 LINE 查看詳細內容</div>
-            </div>
-          </div>
-        </div>
+<script>
+(() => {
+  const options = [...document.querySelectorAll(".reward")];
+  const status = document.getElementById("status");
+  const viewButton = document.getElementById("viewButton");
+  const modal = document.getElementById("modal");
+  const selectedNames = document.getElementById("selectedNames");
+  const closeButton = document.getElementById("closeModal");
+  const goClaim = document.getElementById("goClaim");
+  const selected = new Set();
 
-        <a
-          class="cta"
-          href="https://lin.ee/ztWNt6Ik"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div>
-            <div class="cta-text">立即查看詳情</div>
-            <div class="cta-sub">前往 LINE 活動頁面</div>
-          </div>
-          <span class="cta-arrow" aria-hidden="true">↗</span>
-        </a>
+  function updateStatus() {
+    status.replaceChildren("已選擇 ");
+    const count = document.createElement("strong");
+    count.textContent = `${selected.size} / 2`;
+    status.append(count, " 款造型");
+    viewButton.disabled = selected.size !== 2;
+  }
 
-        <p class="fineprint">
-          實際活動內容。<br>
-          本頁為官方主題展示頁面。
-        </p>
-      </aside>
-    </main>
+  options.forEach(option => {
+    option.addEventListener("click", () => {
+      const name = option.dataset.name;
 
-    <footer>
-      <div class="footer-brand">ARENA OF VALOR</div>
-      <div>官方主題頁面 </div>
-      <div>© 2026 Fan-made Theme</div>
-    </footer>
-  </div>
+      if (selected.has(name)) {
+        selected.delete(name);
+        option.classList.remove("selected");
+        option.setAttribute("aria-pressed", "false");
+      } else {
+        if (selected.size >= 2) {
+          status.textContent = "最多只能選擇兩款，請先取消一款。";
+          return;
+        }
+        selected.add(name);
+        option.classList.add("selected");
+        option.setAttribute("aria-pressed", "true");
+      }
+      updateStatus();
+    });
+  });
+
+  viewButton.addEventListener("click", () => {
+    if (selected.size !== 2) return;
+    selectedNames.textContent = [...selected].join(" ＋ ");
+    modal.hidden = false;
+    closeButton.focus();
+  });
+
+  function closeModal() {
+    modal.hidden = true;
+    viewButton.focus();
+  }
+
+  closeButton.addEventListener("click", closeModal);
+  modal.addEventListener("click", event => {
+    if (event.target === modal) closeModal();
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && !modal.hidden) closeModal();
+  });
+
+  goClaim.addEventListener("click", () => {
+    window.location.href = "https://lin.ee/YXQuB75";
+  });
+
+  updateStatus();
+})();
+</script>
 </body>
 </html>
 ```
